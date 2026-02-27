@@ -1,0 +1,3 @@
+module.exports=[49846,a=>{"use strict";var b=a.i(72131),c=a.i(50944),d=a.i(38393);function e(){let{user:a}=(0,d.useAuth)(),e=(0,c.useRouter)();return(0,b.useEffect)(()=>{a&&e.push({ngo:"/dashboard/ngo",government:"/dashboard/government",corporate:"/dashboard/corporate",donor:"/dashboard/donor"}[a.role]||"/dashboard/ngo")},[a,e]),null}a.s(["default",()=>e])}];
+
+//# sourceMappingURL=src_app_dashboard_page_tsx_196c74b5._.js.map

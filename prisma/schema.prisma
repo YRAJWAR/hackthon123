@@ -1,0 +1,226 @@
+// ──────────────────────────────────────────────────────────────
+// SDG Nexus — PostgreSQL Schema (Prisma ORM)
+// Full-stack SDG Impact Intelligence Platform
+// ──────────────────────────────────────────────────────────────
+
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+// ─── ENUMs ───────────────────────────────────────────────────
+
+enum UserRole {
+  NGO
+  CORPORATE
+  GOVERNMENT
+  DONOR
+  ADMIN
+}
+
+enum OrgType {
+  NGO
+  CORPORATE
+  GOVERNMENT
+}
+
+enum VerificationStatus {
+  PENDING
+  VERIFIED
+  REJECTED
+  SUSPENDED
+}
+
+enum ProjectStatus {
+  DRAFT
+  ACTIVE
+  COMPLETED
+  SUSPENDED
+}
+
+// ─── 1. Users ────────────────────────────────────────────────
+
+model User {
+  id            String     @id @default(uuid()) @db.Uuid
+  full_name     String     @db.VarChar(150)
+  email         String     @unique @db.VarChar(255)
+  password_hash String     @db.VarChar(255)
+  role          UserRole   @default(DONOR)
+  created_at    DateTime   @default(now()) @db.Timestamptz
+
+  // Relations
+  donations     Donation[]
+
+  @@index([role])
+  @@map("users")
+}
+
+// ─── 2. Organizations ────────────────────────────────────────
+
+model Organization {
+  id                   String              @id @default(uuid()) @db.Uuid
+  name                 String              @db.VarChar(255)
+  type                 OrgType
+  registration_number  String?             @unique @db.VarChar(100)
+  country              String              @default("India") @db.VarChar(100)
+  state                String              @db.VarChar(100)
+  district             String?             @db.VarChar(100)
+  verification_status  VerificationStatus  @default(PENDING)
+  created_at           DateTime            @default(now()) @db.Timestamptz
+
+  // Relations
+  projects       Project[]
+  impact_scores  ImpactScore[]
+  csr_allocations CSRAllocation[] @relation("CorporateCSR")
+
+  @@index([type])
+  @@index([state])
+  @@index([verification_status])
+  @@map("organizations")
+}
+
+// ─── 3. Projects ─────────────────────────────────────────────
+
+model Project {
+  id                    String        @id @default(uuid()) @db.Uuid
+  organization_id       String        @db.Uuid
+  title                 String        @db.VarChar(300)
+  description           String        @db.Text
+  budget_allocated      Decimal       @db.Decimal(15, 2)
+  budget_utilized       Decimal       @default(0) @db.Decimal(15, 2)
+  beneficiaries_count   Int           @default(0)
+  outcome_metric_value  Decimal?      @db.Decimal(5, 2) // 0–100 improvement %
+  latitude              Decimal?      @db.Decimal(10, 7)
+  longitude             Decimal?      @db.Decimal(10, 7)
+  status                ProjectStatus @default(DRAFT)
+  created_at            DateTime      @default(now()) @db.Timestamptz
+
+  // Relations
+  organization    Organization      @relation(fields: [organization_id], references: [id], onDelete: Cascade)
+  sdg_tags        ProjectSDG[]
+  activities      ProjectActivity[]
+  donations       Donation[]
+  csr_allocations CSRAllocation[]
+
+  @@index([organization_id])
+  @@index([status])
+  @@index([organization_id, status])  // geo-impact-summary query optimization
+  @@index([created_at(sort: Desc)])
+  @@map("projects")
+}
+
+// ─── 4. SDGs (Static lookup — seeded 1–17) ───────────────────
+
+model SDG {
+  id    Int    @id // 1–17
+  name  String @db.VarChar(100)
+
+  // Relations
+  project_sdgs ProjectSDG[]
+
+  @@map("sdgs")
+}
+
+// ─── 5. ProjectSDGs (Many-to-Many) ───────────────────────────
+
+model ProjectSDG {
+  id                   String  @id @default(uuid()) @db.Uuid
+  project_id           String  @db.Uuid
+  sdg_id               Int
+  ai_confidence_score  Decimal @default(1.0) @db.Decimal(4, 3) // 0.000–1.000
+
+  // Relations
+  project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  sdg     SDG     @relation(fields: [sdg_id], references: [id], onDelete: Cascade)
+
+  @@unique([project_id, sdg_id])
+  @@index([project_id])
+  @@index([sdg_id])
+  @@map("project_sdgs")
+}
+
+// ─── 6. ProjectActivities ────────────────────────────────────
+
+model ProjectActivity {
+  id              String   @id @default(uuid()) @db.Uuid
+  project_id      String   @db.Uuid
+  activity_title  String   @db.VarChar(300)
+  description     String   @db.Text
+  latitude        Decimal? @db.Decimal(10, 7)
+  longitude       Decimal? @db.Decimal(10, 7)
+  proof_url       String?  @db.VarChar(500)
+  hash_value      String   @db.VarChar(64) // SHA-256 hex
+  created_at      DateTime @default(now()) @db.Timestamptz
+
+  // Relations
+  project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+
+  @@index([project_id])
+  @@index([created_at(sort: Desc)])
+  @@map("project_activities")
+}
+
+// ─── 7. ImpactScores ─────────────────────────────────────────
+
+model ImpactScore {
+  id                    String   @id @default(uuid()) @db.Uuid
+  organization_id       String   @db.Uuid
+  scale_score           Decimal  @db.Decimal(5, 2) // 0–100
+  outcome_score         Decimal  @db.Decimal(5, 2)
+  efficiency_score      Decimal  @db.Decimal(5, 2)
+  geographic_need_score Decimal  @db.Decimal(5, 2)
+  transparency_score    Decimal  @db.Decimal(5, 2)
+  final_score           Decimal  @db.Decimal(7, 2) // weighted composite
+  calculated_at         DateTime @default(now()) @db.Timestamptz
+
+  // Relations
+  organization Organization @relation(fields: [organization_id], references: [id], onDelete: Cascade)
+
+  @@index([organization_id])
+  @@index([final_score(sort: Desc)]) // leaderboard queries
+  @@index([calculated_at(sort: Desc)])
+  @@map("impact_scores")
+}
+
+// ─── 8. Donations ────────────────────────────────────────────
+
+model Donation {
+  id         String   @id @default(uuid()) @db.Uuid
+  project_id String   @db.Uuid
+  donor_id   String   @db.Uuid
+  amount     Decimal  @db.Decimal(15, 2)
+  created_at DateTime @default(now()) @db.Timestamptz
+
+  // Relations
+  project Project @relation(fields: [project_id], references: [id], onDelete: Cascade)
+  donor   User    @relation(fields: [donor_id], references: [id], onDelete: Cascade)
+
+  @@index([project_id])
+  @@index([donor_id])
+  @@index([created_at(sort: Desc)])
+  @@map("donations")
+}
+
+// ─── 9. CSRAllocations ───────────────────────────────────────
+
+model CSRAllocation {
+  id               String   @id @default(uuid()) @db.Uuid
+  corporate_org_id String   @db.Uuid
+  project_id       String   @db.Uuid
+  amount_committed Decimal  @db.Decimal(15, 2)
+  amount_disbursed Decimal  @default(0) @db.Decimal(15, 2)
+  financial_year   String   @db.VarChar(9) // e.g. "2024-2025"
+  created_at       DateTime @default(now()) @db.Timestamptz
+
+  // Relations
+  corporate_org Organization @relation("CorporateCSR", fields: [corporate_org_id], references: [id], onDelete: Cascade)
+  project       Project      @relation(fields: [project_id], references: [id], onDelete: Cascade)
+
+  @@index([corporate_org_id])
+  @@index([project_id])
+  @@index([financial_year])
+  @@map("csr_allocations")
+}

@@ -1,0 +1,3 @@
+{
+  "/api/organizations/[id]/impact-score/route": "app/api/organizations/[id]/impact-score/route.js"
+}

@@ -1,0 +1,16 @@
+{
+  "/_not-found/page": "app/_not-found/page.js",
+  "/dashboard/corporate/page": "app/dashboard/corporate/page.js",
+  "/dashboard/donor/page": "app/dashboard/donor/page.js",
+  "/dashboard/government/page": "app/dashboard/government/page.js",
+  "/dashboard/heatmap/page": "app/dashboard/heatmap/page.js",
+  "/dashboard/leaderboard/page": "app/dashboard/leaderboard/page.js",
+  "/dashboard/ledger/page": "app/dashboard/ledger/page.js",
+  "/dashboard/ngo/create-project/page": "app/dashboard/ngo/create-project/page.js",
+  "/dashboard/ngo/page": "app/dashboard/ngo/page.js",
+  "/dashboard/page": "app/dashboard/page.js",
+  "/dashboard/profile/page": "app/dashboard/profile/page.js",
+  "/login/page": "app/login/page.js",
+  "/page": "app/page.js",
+  "/register/page": "app/register/page.js"
+}
