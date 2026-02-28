@@ -61,19 +61,23 @@ function LoginPage() {
     const demoAccounts = [
         {
             label: 'NGO',
-            email: 'ngo@sdgnexus.org'
+            email: 'ngo@sdgnexus.org',
+            icon: '🏢'
         },
         {
             label: 'Government',
-            email: 'gov@sdgnexus.org'
+            email: 'gov@sdgnexus.org',
+            icon: '🏛️'
         },
         {
             label: 'Corporate',
-            email: 'corp@sdgnexus.org'
+            email: 'corp@sdgnexus.org',
+            icon: '💼'
         },
         {
             label: 'Donor',
-            email: 'donor@sdgnexus.org'
+            email: 'donor@sdgnexus.org',
+            icon: '💝'
         }
     ];
     return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -114,7 +118,7 @@ function LoginPage() {
                 transition: {
                     duration: 0.6
                 },
-                className: "glass-card p-8 w-full max-w-md relative z-10",
+                className: "glass-card-dark p-8 w-full max-w-md relative z-10",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "text-center mb-8",
@@ -142,7 +146,7 @@ function LoginPage() {
                                 columnNumber: 21
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-sm text-gray-500 mt-1",
+                                className: "text-sm text-slate-400 mt-1",
                                 children: "Sign in to SDG Nexus"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/login/page.tsx",
@@ -162,7 +166,7 @@ function LoginPage() {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                        className: "block text-xs font-medium text-gray-400 mb-1.5",
+                                        className: "block text-xs font-medium text-slate-400 mb-1.5",
                                         children: "Email"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/login/page.tsx",
@@ -173,7 +177,7 @@ function LoginPage() {
                                         type: "email",
                                         value: email,
                                         onChange: (e)=>setEmail(e.target.value),
-                                        className: "input-dark",
+                                        className: "input-dark-theme",
                                         placeholder: "your@email.com",
                                         required: true
                                     }, void 0, false, {
@@ -190,7 +194,7 @@ function LoginPage() {
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                        className: "block text-xs font-medium text-gray-400 mb-1.5",
+                                        className: "block text-xs font-medium text-slate-400 mb-1.5",
                                         children: "Password"
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/login/page.tsx",
@@ -201,7 +205,7 @@ function LoginPage() {
                                         type: "password",
                                         value: password,
                                         onChange: (e)=>setPassword(e.target.value),
-                                        className: "input-dark",
+                                        className: "input-dark-theme",
                                         placeholder: "••••••••",
                                         required: true
                                     }, void 0, false, {
@@ -243,7 +247,7 @@ function LoginPage() {
                         className: "mt-6",
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                className: "text-xs text-gray-500 text-center mb-3",
+                                className: "text-xs text-slate-500 text-center mb-3",
                                 children: "Quick Demo Login (password: password123)"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/login/page.tsx",
@@ -257,14 +261,29 @@ function LoginPage() {
                                             setEmail(acc.email);
                                             setPassword('password123');
                                         },
-                                        className: "px-3 py-2 rounded-lg text-xs font-medium transition-all hover:bg-white/5",
+                                        className: "px-3 py-2.5 rounded-lg text-xs font-medium transition-all hover:bg-white/10 flex items-center gap-2",
                                         style: {
-                                            background: 'rgba(255,255,255,0.03)',
-                                            border: '1px solid rgba(255,255,255,0.06)',
-                                            color: '#94a3b8'
+                                            background: 'rgba(255,255,255,0.05)',
+                                            border: '1px solid rgba(255,255,255,0.08)',
+                                            color: '#cbd5e1'
                                         },
-                                        children: acc.label
-                                    }, acc.email, false, {
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                children: acc.icon
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/login/page.tsx",
+                                                lineNumber: 91,
+                                                columnNumber: 33
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                children: acc.label
+                                            }, void 0, false, {
+                                                fileName: "[project]/src/app/login/page.tsx",
+                                                lineNumber: 92,
+                                                columnNumber: 33
+                                            }, this)
+                                        ]
+                                    }, acc.email, true, {
                                         fileName: "[project]/src/app/login/page.tsx",
                                         lineNumber: 87,
                                         columnNumber: 29
@@ -281,7 +300,7 @@ function LoginPage() {
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-center text-xs text-gray-500 mt-6",
+                        className: "text-center text-xs text-slate-500 mt-6",
                         children: [
                             "Don't have an account? ",
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$client$2f$app$2d$dir$2f$link$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
@@ -290,13 +309,13 @@ function LoginPage() {
                                 children: "Register"
                             }, void 0, false, {
                                 fileName: "[project]/src/app/login/page.tsx",
-                                lineNumber: 98,
+                                lineNumber: 99,
                                 columnNumber: 49
                             }, this)
                         ]
                     }, void 0, true, {
                         fileName: "[project]/src/app/login/page.tsx",
-                        lineNumber: 97,
+                        lineNumber: 98,
                         columnNumber: 17
                     }, this)
                 ]

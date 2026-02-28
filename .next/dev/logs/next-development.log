@@ -1,53 +1,436 @@
-[00:00:11.852] Server  LOG     ✓ Ready in 11.3s
-[00:00:28.818] Server  LOG     ○ Compiling / ...
-[00:00:36.266] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:03:24.479] Server  LOG     ○ Compiling /dashboard/ngo ...
-[00:05:05.379] Server  LOG     ✓ Compiled in 140ms
-[00:05:17.377] Server  LOG     ✓ Compiled in 347ms
-[00:05:26.182] Server  LOG     ✓ Compiled in 108ms
-[00:06:25.775] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:08:02.880] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'map')
-[00:09:37.711] Server  WARN    ⚠ Fast Refresh had to perform a full reload due to a runtime error.
-[00:09:37.730] Server  LOG     ✓ Compiled in 52ms
-[00:09:38.465] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:13:42.045] Server  WARN    Prisma DB not available — returning in-memory project response
-[00:17:48.839] Server  LOG     ✓ Compiled in 106ms
-[00:19:04.428] Server  LOG     ✓ Compiled in 106ms
-[00:19:42.591] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:20:36.150] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:21:14.345] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:23:14.368] Server  LOG     ✓ Compiled in 51ms
-[00:25:28.515] Server  LOG     ✓ Compiled in 145ms
-[00:25:29.041] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:25:29.046] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:25:55.484] Server  LOG     ✓ Compiled in 89ms
-[00:26:12.227] Server  LOG     ✓ Compiled in 48ms
-[00:27:09.740] Server  LOG     ✓ Compiled in 128ms
-[00:27:46.763] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:28:02.485] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:29:23.739] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:29:30.181] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:30:00.093] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:30:02.566] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:30:05.138] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:30:52.698] Server  LOG     ✓ Compiled in 58ms
-[00:31:12.368] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:37:38.484] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:38:39.897] Server  LOG     ✓ Compiled in 65ms
-[00:49:06.178] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:51:11.631] Browser ERROR   uncaughtError: TypeError: Cannot read properties of undefined (reading 'map')
-[00:51:49.609] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:53:03.411] Server  LOG     ✓ Compiled in 50ms
-[00:53:40.897] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:54:45.401] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:57:38.790] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[00:57:46.027] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:00:26.417] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:04:23.046] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:04:58.054] Server  LOG     ✓ Compiled in 43ms
-[01:05:33.947] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:22:56.337] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:31:09.402] Server  LOG     ✓ Compiled in 74ms
-[01:31:36.801] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:32:38.123] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
-[01:40:08.143] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:03.382] Server  LOG     ✓ Ready in 2.4s
+[00:00:25.121] Server  LOG     ○ Compiling / ...
+[00:00:29.641] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:30.847] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:00:54.836] Server  LOG     ○ Compiling /dashboard/government ...
+[00:00:56.056] Server  ERROR   ⨯ ./node_modules/recharts/es6/util/ReactUtils.js:3:1
+Module not found: Can't resolve 'react-is'
+  1 | import get from 'es-toolkit/compat/get';
+  2 | import { Children } from 'react';
+> 3 | import { isFragment } from 'react-is';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { isNullish } from './DataUtils';
+  5 | export var SCALE_TYPES = ['auto', 'linear', 'pow', 'sqrt', 'log', 'identity', 'time', 'band', 'point', 'ordinal', 'quantile', 'quantize', 'utc', 'sequential', 'threshold'];
+  6 |
+
+
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component Browser]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component SSR]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:56.454] Browser ERROR   ./node_modules/recharts/es6/util/ReactUtils.js:3:1
+Module not found: Can't resolve 'react-is'
+  1 | import get from 'es-toolkit/compat/get';
+  2 | import { Children } from 'react';
+> 3 | import { isFragment } from 'react-is';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { isNullish } from './DataUtils';
+  5 | export var SCALE_TYPES = ['auto', 'linear', 'pow', 'sqrt', 'log', 'identity', 'time', 'band', 'point', 'ordinal', 'quantile', 'quantize', 'utc', 'sequential', 'threshold'];
+  6 |
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component Browser]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component SSR]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:00:56.454] Browser ERROR   ./node_modules/recharts/es6/util/ReactUtils.js:3:1
+Module not found: Can't resolve 'react-is'
+  1 | import get from 'es-toolkit/compat/get';
+  2 | import { Children } from 'react';
+> 3 | import { isFragment } from 'react-is';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { isNullish } from './DataUtils';
+  5 | export var SCALE_TYPES = ['auto', 'linear', 'pow', 'sqrt', 'log', 'identity', 'time', 'band', 'point', 'ordinal', 'quantile', 'quantize', 'utc', 'sequential', 'threshold'];
+  6 |
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component Browser]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component SSR]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:00:58.013] Browser ERROR   ./node_modules/recharts/es6/util/ReactUtils.js:3:1
+Module not found: Can't resolve 'react-is'
+  1 | import get from 'es-toolkit/compat/get';
+  2 | import { Children } from 'react';
+> 3 | import { isFragment } from 'react-is';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { isNullish } from './DataUtils';
+  5 | export var SCALE_TYPES = ['auto', 'linear', 'pow', 'sqrt', 'log', 'identity', 'time', 'band', 'point', 'ordinal', 'quantile', 'quantize', 'utc', 'sequential', 'threshold'];
+  6 |
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component Browser]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component SSR]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:00:58.017] Browser ERROR   ./node_modules/recharts/es6/util/ReactUtils.js:3:1
+Module not found: Can't resolve 'react-is'
+  1 | import get from 'es-toolkit/compat/get';
+  2 | import { Children } from 'react';
+> 3 | import { isFragment } from 'react-is';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { isNullish } from './DataUtils';
+  5 | export var SCALE_TYPES = ['auto', 'linear', 'pow', 'sqrt', 'log', 'identity', 'time', 'band', 'point', 'ordinal', 'quantile', 'quantize', 'utc', 'sequential', 'threshold'];
+  6 |
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component Browser]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component SSR]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:00:58.275] Browser ERROR   ./node_modules/recharts/es6/util/ReactUtils.js:3:1
+Module not found: Can't resolve 'react-is'
+  1 | import get from 'es-toolkit/compat/get';
+  2 | import { Children } from 'react';
+> 3 | import { isFragment } from 'react-is';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { isNullish } from './DataUtils';
+  5 | export var SCALE_TYPES = ['auto', 'linear', 'pow', 'sqrt', 'log', 'identity', 'time', 'band', 'point', 'ordinal', 'quantile', 'quantize', 'utc', 'sequential', 'threshold'];
+  6 |
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component Browser]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component SSR]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:00:59.593] Server  ERROR   ⨯ ./node_modules/recharts/es6/util/ReactUtils.js:3:1
+Module not found: Can't resolve 'react-is'
+  1 | import get from 'es-toolkit/compat/get';
+  2 | import { Children } from 'react';
+> 3 | import { isFragment } from 'react-is';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { isNullish } from './DataUtils';
+  5 | export var SCALE_TYPES = ['auto', 'linear', 'pow', 'sqrt', 'log', 'identity', 'time', 'band', 'point', 'ordinal', 'quantile', 'quantize', 'utc', 'sequential', 'threshold'];
+  6 |
+
+
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component Browser]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component SSR]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:00:59.647] Browser ERROR   ./node_modules/recharts/es6/util/ReactUtils.js:3:1
+Module not found: Can't resolve 'react-is'
+  1 | import get from 'es-toolkit/compat/get';
+  2 | import { Children } from 'react';
+> 3 | import { isFragment } from 'react-is';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { isNullish } from './DataUtils';
+  5 | export var SCALE_TYPES = ['auto', 'linear', 'pow', 'sqrt', 'log', 'identity', 'time', 'band', 'point', 'ordinal', 'quantile', 'quantize', 'utc', 'sequential', 'threshold'];
+  6 |
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component Browser]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component SSR]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:00:59.763] Browser ERROR   ./node_modules/recharts/es6/util/ReactUtils.js:3:1
+Module not found: Can't resolve 'react-is'
+  1 | import get from 'es-toolkit/compat/get';
+  2 | import { Children } from 'react';
+> 3 | import { isFragment } from 'react-is';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { isNullish } from './DataUtils';
+  5 | export var SCALE_TYPES = ['auto', 'linear', 'pow', 'sqrt', 'log', 'identity', 'time', 'band', 'point', 'ordinal', 'quantile', 'quantize', 'utc', 'sequential', 'threshold'];
+  6 |
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component Browser]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component SSR]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:00:59.797] Server  ERROR   ⨯ ./node_modules/recharts/es6/util/ReactUtils.js:3:1
+Module not found: Can't resolve 'react-is'
+  1 | import get from 'es-toolkit/compat/get';
+  2 | import { Children } from 'react';
+> 3 | import { isFragment } from 'react-is';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { isNullish } from './DataUtils';
+  5 | export var SCALE_TYPES = ['auto', 'linear', 'pow', 'sqrt', 'log', 'identity', 'time', 'band', 'point', 'ordinal', 'quantile', 'quantize', 'utc', 'sequential', 'threshold'];
+  6 |
+
+
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component Browser]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component SSR]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:01:00.405] Browser ERROR   uncaughtError: Error: ./node_modules/recharts/es6/util/ReactUtils.js:3:1
+Module not found: Can't resolve 'react-is'
+  1 | import get from 'es-toolkit/compat/get';
+  2 | import { Children } from 'react';
+> 3 | import { isFragment } from 'react-is';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { isNullish } from './DataUtils';
+  5 | export var SCALE_TYPES = ['auto', 'linear', 'pow', 'sqrt', 'log', 'identity', 'time', 'band', 'point', 'ordinal', 'quantile', 'quantize', 'utc', 'sequential', 'threshold'];
+  6 |
+
+
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component Browser]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component SSR]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+
+
+[00:01:00.544] Browser ERROR   ./node_modules/recharts/es6/util/ReactUtils.js:3:1
+Module not found: Can't resolve 'react-is'
+  1 | import get from 'es-toolkit/compat/get';
+  2 | import { Children } from 'react';
+> 3 | import { isFragment } from 'react-is';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { isNullish } from './DataUtils';
+  5 | export var SCALE_TYPES = ['auto', 'linear', 'pow', 'sqrt', 'log', 'identity', 'time', 'band', 'point', 'ordinal', 'quantile', 'quantize', 'utc', 'sequential', 'threshold'];
+  6 |
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component Browser]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component SSR]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:01:00.670] Browser ERROR   ./node_modules/recharts/es6/util/ReactUtils.js:3:1
+Module not found: Can't resolve 'react-is'
+  1 | import get from 'es-toolkit/compat/get';
+  2 | import { Children } from 'react';
+> 3 | import { isFragment } from 'react-is';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { isNullish } from './DataUtils';
+  5 | export var SCALE_TYPES = ['auto', 'linear', 'pow', 'sqrt', 'log', 'identity', 'time', 'band', 'point', 'ordinal', 'quantile', 'quantize', 'utc', 'sequential', 'threshold'];
+  6 |
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component Browser]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component SSR]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:01:14.067] Server  LOG     ✓ Finished writing to filesystem cache in 11.0s
+[00:02:09.205] Browser ERROR   ./node_modules/recharts/es6/util/ReactUtils.js:3:1
+Module not found: Can't resolve 'react-is'
+  1 | import get from 'es-toolkit/compat/get';
+  2 | import { Children } from 'react';
+> 3 | import { isFragment } from 'react-is';
+    | ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+  4 | import { isNullish } from './DataUtils';
+  5 | export var SCALE_TYPES = ['auto', 'linear', 'pow', 'sqrt', 'log', 'identity', 'time', 'band', 'point', 'ordinal', 'quantile', 'quantize', 'utc', 'sequential', 'threshold'];
+  6 |
+
+Import traces:
+  Client Component Browser:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component Browser]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Client Component Browser]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+  Client Component SSR:
+    ./node_modules/recharts/es6/util/ReactUtils.js [Client Component SSR]
+    ./node_modules/recharts/es6/cartesian/Line.js [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Client Component SSR]
+    ./src/app/dashboard/government/page.tsx [Server Component]
+
+https://nextjs.org/docs/messages/module-not-found
+[00:02:18.821] Server  LOG     ✓ Compiled in 7.5s
+[00:02:25.547] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:03:03.851] Server  LOG     ○ Compiling /dashboard/heatmap ...
+[00:03:49.548] Server  LOG     ○ Compiling /dashboard/leaderboard ...
+[00:04:28.512] Server  LOG     ○ Compiling /dashboard/analytics ...
+[00:04:49.152] Server  LOG     ✓ Finished writing to filesystem cache in 11.3s
+[00:04:56.681] Server  LOG     ○ Compiling /dashboard/profile ...
+[00:05:25.028] Server  LOG     ✓ Finished filesystem cache database compaction in 16.1s
+[00:06:20.334] Server  LOG     ○ Compiling /dashboard/ngo ...
+[00:06:36.200] Server  LOG     ○ Compiling /api/organizations/[id]/impact-breakdown ...
+[00:07:14.913] Server  LOG     ✓ Finished writing to filesystem cache in 36.1s
+[00:09:25.555] Server  LOG     ✓ Compiled in 2.8s
+[00:12:16.422] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:12:58.889] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:19:07.322] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:24:06.745] Server  LOG     ✓ Compiled in 4s
+[00:24:29.003] Server  LOG     ✓ Finished writing to filesystem cache in 14.4s
+[00:24:54.986] Server  LOG     ✓ Compiled in 12.6s
+[00:24:55.562] Server  LOG     ✓ Finished filesystem cache database compaction in 26.7s
+[00:25:11.384] Server  LOG     ✓ Finished writing to filesystem cache in 14.5s
+[00:25:39.125] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:25:57.252] Server  LOG     ○ Compiling /dashboard/government/organization/[id] ...
+[00:26:26.683] Server  LOG     ✓ Finished writing to filesystem cache in 10.7s
+[00:31:28.093] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:31:54.657] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:36:05.575] Server  LOG     ✓ Compiled in 1587ms
+[00:36:05.650] Server  WARN    ⚠ Fast Refresh had to perform a full reload when ./src/data/mockData.ts changed. Read more: https://nextjs.org/docs/messages/fast-refresh-reload
+[00:36:10.766] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:37:19.849] Server  LOG     ✓ Compiled in 2.9s
+[00:38:48.669] Server  LOG     ✓ Compiled in 6.2s
+[00:39:30.735] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:39:59.855] Server  LOG     ✓ Finished writing to filesystem cache in 10.3s
+[00:41:57.719] Server  LOG     ○ Compiling /register ...
+[00:42:12.449] Server  LOG     ○ Compiling /dashboard/donor ...
+[00:42:40.621] Server  LOG     ✓ Finished filesystem cache database compaction in 26.9s
+[00:42:52.504] Server  LOG     ✓ Finished writing to filesystem cache in 35.4s
+[00:44:08.104] Server  LOG     ✓ Compiled in 1305ms
+[00:44:25.743] Server  LOG     ✓ Compiled in 3s
+[00:44:49.497] Server  LOG     ✓ Finished writing to filesystem cache in 15.0s
+[00:45:41.176] Server  LOG     ✓ Compiled in 2.2s
+[00:46:16.883] Server  LOG     ○ Compiling /api/razorpay ...
+[00:46:51.321] Server  LOG     ✓ Finished filesystem cache database compaction in 15.2s
+[00:47:34.560] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:49:19.093] Server  LOG     ✓ Compiled in 1106ms
+[00:49:31.654] Server  LOG     ✓ Compiled in 701ms
+[00:50:05.848] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:50:50.950] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:54:33.607] Server  LOG     ✓ Compiled in 1897ms
+[00:55:04.591] Server  LOG     ✓ Compiled in 930ms
+[00:55:32.577] Server  LOG     ✓ Compiled in 879ms
+[00:56:13.017] Server  LOG     ✓ Compiled in 757ms
+[00:57:36.954] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:57:37.957] Browser WARN    Unable to access iframe: {}
+[00:58:21.352] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:58:23.278] Browser WARN    Unable to access iframe: {}
+[00:58:23.425] Browser WARN    Image with src "/logo.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[00:59:02.836] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[00:59:08.119] Browser WARN    Unable to access iframe: {}
+[00:59:32.762] Browser WARN    Unable to access iframe: {}
+[01:00:09.071] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:00:10.625] Browser WARN    Unable to access iframe: {}
+[01:00:10.625] Browser WARN    Image with src "/logo.png" was detected as the Largest Contentful Paint (LCP). Please add the `loading="eager"` property if this image is above the fold.
+Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
+[01:01:04.689] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:01:22.933] Browser WARN    Unable to access iframe: {}
+[01:01:31.966] Browser WARN    Unable to access iframe: {}
+[01:01:41.645] Browser WARN    Unable to access iframe: {}
+[01:02:31.235] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:02:50.941] Browser WARN    Unable to access iframe: {}
+[01:03:04.626] Browser WARN    Unable to access iframe: {}
+[01:05:20.156] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:05:56.360] Server  LOG     ○ Compiling /dashboard/ngo/create-project ...
+[01:06:19.405] Server  LOG     ✓ Finished writing to filesystem cache in 12.4s
+[01:06:46.480] Browser INFO    %cDownload the React DevTools for a better development experience: https://react.dev/link/react-devtools font-weight:bold
+[01:06:54.560] Server  LOG     ○ Compiling /explore ...
+[01:07:19.928] Server  LOG     ✓ Finished writing to filesystem cache in 13.7s
+[01:07:39.070] Server  LOG     ✓ Finished filesystem cache database compaction in 19.3s

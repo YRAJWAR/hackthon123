@@ -98,9 +98,9 @@ export default function LandingPage() {
                     className="relative z-10 max-w-4xl mx-auto mt-20 grid grid-cols-2 md:grid-cols-4 gap-4"
                 >
                     {stats.map((s, i) => (
-                        <div key={i} className="glass-card p-5 text-center">
+                        <div key={i} className="glass-card-dark p-5 text-center">
                             <div className="text-2xl md:text-3xl font-bold gradient-text-cyan">{s.value}</div>
-                            <div className="text-xs text-gray-500 mt-1">{s.label}</div>
+                            <div className="text-xs text-slate-400 mt-1">{s.label}</div>
                         </div>
                     ))}
                 </motion.div>
@@ -111,7 +111,7 @@ export default function LandingPage() {
                 <div className="max-w-6xl mx-auto">
                     <div className="text-center mb-14">
                         <h2 className="text-3xl md:text-4xl font-bold text-white mb-4">Intelligent SDG Ecosystem</h2>
-                        <p className="text-gray-500 max-w-xl mx-auto">Everything you need to drive measurable impact across all 17 Sustainable Development Goals.</p>
+                        <p className="text-slate-400 max-w-xl mx-auto">Everything you need to drive measurable impact across all 17 Sustainable Development Goals.</p>
                     </div>
                     <div className="grid md:grid-cols-3 gap-5">
                         {features.map((f, i) => (
@@ -120,11 +120,11 @@ export default function LandingPage() {
                                 initial={{ opacity: 0, y: 20 }}
                                 animate={{ opacity: 1, y: 0 }}
                                 transition={{ duration: 0.5, delay: 0.1 * i }}
-                                className="glass-card p-6 group cursor-default"
+                                className="glass-card-dark p-6 group cursor-default"
                             >
                                 <div className="text-3xl mb-4">{f.icon}</div>
                                 <h3 className="text-lg font-semibold text-white mb-2">{f.title}</h3>
-                                <p className="text-sm text-gray-400 leading-relaxed">{f.desc}</p>
+                                <p className="text-sm text-slate-400 leading-relaxed">{f.desc}</p>
                             </motion.div>
                         ))}
                     </div>
@@ -159,12 +159,12 @@ export default function LandingPage() {
 
             {/* CTA */}
             <section className="py-20 px-6">
-                <div className="max-w-3xl mx-auto text-center glass-card p-12 relative overflow-hidden">
+                <div className="max-w-3xl mx-auto text-center glass-card-dark p-12 relative overflow-hidden">
                     <div className="absolute inset-0 opacity-10"
                         style={{ background: 'linear-gradient(135deg, #06b6d4, #8b5cf6)' }} />
                     <div className="relative z-10">
                         <h2 className="text-3xl font-bold text-white mb-4">Ready to Transform Impact?</h2>
-                        <p className="text-gray-400 mb-8 max-w-lg mx-auto">
+                        <p className="text-slate-400 mb-8 max-w-lg mx-auto">
                             Join the next generation of SDG-driven organizations building measurable, transparent, and scalable impact.
                         </p>
                         <Link href="/register" className="btn-neon text-base px-10 py-3.5 no-underline">

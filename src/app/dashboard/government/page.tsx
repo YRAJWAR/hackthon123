@@ -1,11 +1,12 @@
 'use client';
 
-import React from 'react';
+import React, { useState } from 'react';
 import { motion } from 'framer-motion';
-import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, Cell, LineChart, Line, Legend } from 'recharts';
-import { GOV_FUNDING_GAP, GOV_RISK_TREND, UNDERFUNDED_ALERTS } from '@/data/mockData';
+import { BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, LineChart, Line, Legend } from 'recharts';
+import { GOV_FUNDING_GAP, GOV_RISK_TREND, UNDERFUNDED_ALERTS, MOCK_USERS, MOCK_PROJECTS, MOCK_IMPACT_SCORES, SDG_INFO } from '@/data/mockData';
 import { useData } from '@/lib/DataContext';
 import AnimatedCounter from '@/components/ui/AnimatedCounter';
+import { useRouter } from 'next/navigation';
 
 const fadeIn = (d: number) => ({
     initial: { opacity: 0, y: 20 },
@@ -20,6 +21,40 @@ export default function GovernmentDashboard() {
     const totalBeneficiaries = regions.reduce((s, r) => s + r.beneficiaries, 0);
     const totalProjects = projects.length;
     const topNGOs = [...organizations].sort((a, b) => b.impact_score - a.impact_score).slice(0, 5);
+
+    const router = useRouter();
+    const [searchTerm, setSearchTerm] = useState('');
+    const [typeFilter, setTypeFilter] = useState<'all' | 'ngo' | 'corporate'>('all');
+
+    // Build enriched organization list with project/financial data
+    const allOrgs = MOCK_USERS
+        .filter(u => u.role === 'ngo' || u.role === 'corporate')
+        .map(user => {
+            const orgProjects = MOCK_PROJECTS.filter(p => p.organization_id === user.id || p.organization_name === user.organization_name);
+            const totalBudget = orgProjects.reduce((s, p) => s + p.budget, 0);
+            const totalSpent = orgProjects.reduce((s, p) => s + p.spent, 0);
+            const totalBeneficiaries = orgProjects.reduce((s, p) => s + p.beneficiary_count, 0);
+            const activeCount = orgProjects.filter(p => p.status === 'active').length;
+            const avgScore = orgProjects.length > 0 ? Math.round(orgProjects.reduce((s, p) => s + p.impact_score, 0) / orgProjects.length) : 0;
+            const state = orgProjects.length > 0 ? orgProjects[0].location.name : '—';
+            return {
+                ...user,
+                projectCount: orgProjects.length,
+                activeProjects: activeCount,
+                totalBudget,
+                totalSpent,
+                totalBeneficiaries,
+                avgImpactScore: avgScore,
+                state,
+            };
+        });
+
+    const filteredOrganizations = allOrgs.filter(org =>
+        (typeFilter === 'all' || org.role === typeFilter) &&
+        (org.organization_name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            org.name.toLowerCase().includes(searchTerm.toLowerCase()) ||
+            org.state.toLowerCase().includes(searchTerm.toLowerCase()))
+    );
 
     return (
         <div className="space-y-6">
@@ -49,6 +84,111 @@ export default function GovernmentDashboard() {
                     </motion.div>
                 ))}
             </div>
+
+            {/* ===== ORGANIZATIONS DIRECTORY (NOW AT TOP) ===== */}
+            <motion.div {...fadeIn(0.15)} className="glass-card p-6">
+                <div className="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-5">
+                    <div>
+                        <h2 className="text-lg font-semibold text-slate-900">📋 Organizations Directory</h2>
+                        <p className="text-xs text-slate-500">Click any organization to view full transaction & project details</p>
+                    </div>
+                    <div className="flex gap-3 items-center">
+                        {/* Type Filter Tabs */}
+                        <div className="flex bg-slate-100 rounded-lg p-0.5">
+                            {(['all', 'ngo', 'corporate'] as const).map(t => (
+                                <button key={t} onClick={() => setTypeFilter(t)}
+                                    className={`px-3 py-1.5 text-xs font-semibold rounded-md transition-all ${typeFilter === t ? 'bg-white text-slate-900 shadow-sm' : 'text-slate-500 hover:text-slate-700'}`}>
+                                    {t === 'all' ? 'All' : t.toUpperCase()}
+                                </button>
+                            ))}
+                        </div>
+                        {/* Search */}
+                        <div className="relative w-full md:w-72">
+                            <div className="absolute inset-y-0 left-0 pl-3 flex items-center pointer-events-none">
+                                <span className="text-slate-400">🔍</span>
+                            </div>
+                            <input
+                                type="text"
+                                placeholder="Search name, contact, state..."
+                                value={searchTerm}
+                                onChange={(e) => setSearchTerm(e.target.value)}
+                                className="bg-slate-50 border border-slate-200 text-slate-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full pl-10 p-2.5 shadow-sm outline-none transition-all focus:bg-white"
+                            />
+                        </div>
+                    </div>
+                </div>
+
+                <div className="overflow-x-auto rounded-xl border border-slate-100">
+                    <table className="w-full text-sm text-left text-slate-500">
+                        <thead className="text-xs text-slate-500 uppercase bg-slate-50 border-b border-slate-100">
+                            <tr>
+                                <th scope="col" className="px-5 py-3.5 font-semibold">Organization</th>
+                                <th scope="col" className="px-5 py-3.5 font-semibold">Type</th>
+                                <th scope="col" className="px-5 py-3.5 font-semibold">State</th>
+                                <th scope="col" className="px-5 py-3.5 font-semibold">Contact</th>
+                                <th scope="col" className="px-5 py-3.5 font-semibold text-center">Projects</th>
+                                <th scope="col" className="px-5 py-3.5 font-semibold text-right">Funding</th>
+                                <th scope="col" className="px-5 py-3.5 font-semibold text-center">Impact</th>
+                                <th scope="col" className="px-5 py-3.5 font-semibold text-center">Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {filteredOrganizations.map((org, index) => (
+                                <tr
+                                    key={org.id}
+                                    onClick={() => router.push(`/dashboard/government/organization/${org.id}`)}
+                                    className={`bg-white hover:bg-blue-50/50 transition-all cursor-pointer group ${index === filteredOrganizations.length - 1 ? '' : 'border-b border-slate-50'}`}
+                                >
+                                    <td className="px-5 py-4">
+                                        <div className="font-semibold text-slate-900">{org.organization_name}</div>
+                                        <div className="text-[11px] text-slate-400">{org.email}</div>
+                                    </td>
+                                    <td className="px-5 py-4">
+                                        <span className={`px-2.5 py-1 text-[10px] font-bold uppercase rounded-md ${org.role === 'ngo' ? 'bg-emerald-100 text-emerald-700' : 'bg-blue-100 text-blue-700'}`}>
+                                            {org.role}
+                                        </span>
+                                    </td>
+                                    <td className="px-5 py-4 text-slate-600 text-xs">{org.state}</td>
+                                    <td className="px-5 py-4 text-slate-600">{org.name}</td>
+                                    <td className="px-5 py-4 text-center">
+                                        <span className="font-bold text-slate-900">{org.activeProjects}</span>
+                                        <span className="text-slate-400 text-xs"> / {org.projectCount}</span>
+                                    </td>
+                                    <td className="px-5 py-4 text-right font-semibold text-slate-800">
+                                        ₹{(org.totalBudget / 100000).toFixed(1)}L
+                                    </td>
+                                    <td className="px-5 py-4 text-center">
+                                        <span className={`inline-block px-2 py-0.5 text-xs font-bold rounded-full ${org.avgImpactScore >= 850 ? 'bg-emerald-100 text-emerald-700' :
+                                                org.avgImpactScore >= 700 ? 'bg-blue-100 text-blue-700' :
+                                                    org.avgImpactScore > 0 ? 'bg-amber-100 text-amber-700' : 'bg-slate-100 text-slate-400'
+                                            }`}>
+                                            {org.avgImpactScore > 0 ? org.avgImpactScore : '—'}
+                                        </span>
+                                    </td>
+                                    <td className="px-5 py-4 text-center">
+                                        <div className="flex items-center justify-center gap-1.5">
+                                            <div className={`h-2 w-2 rounded-full ${org.verification_status === 'verified' ? 'bg-emerald-500' :
+                                                org.verification_status === 'pending' ? 'bg-amber-500' : 'bg-rose-500'}`}></div>
+                                            <span className="text-xs text-slate-600 font-medium">
+                                                {org.verification_status.charAt(0).toUpperCase() + org.verification_status.slice(1)}
+                                            </span>
+                                            <span className="text-slate-300 opacity-0 group-hover:opacity-100 transition-opacity ml-1">→</span>
+                                        </div>
+                                    </td>
+                                </tr>
+                            ))}
+                            {filteredOrganizations.length === 0 && (
+                                <tr>
+                                    <td colSpan={8} className="px-6 py-8 text-center text-slate-400">
+                                        No organizations found matching "{searchTerm}"
+                                    </td>
+                                </tr>
+                            )}
+                        </tbody>
+                    </table>
+                </div>
+                <div className="mt-3 text-xs text-slate-400 text-right">Showing {filteredOrganizations.length} of {allOrgs.length} organizations</div>
+            </motion.div>
 
             {/* Funding Gap + Alerts */}
             <div className="grid md:grid-cols-3 gap-5">

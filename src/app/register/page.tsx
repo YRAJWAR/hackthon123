@@ -40,31 +40,31 @@ export default function RegisterPage() {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="glass-card p-8 w-full max-w-lg relative z-10"
+                className="glass-card-dark p-8 w-full max-w-lg relative z-10"
             >
                 <div className="text-center mb-8">
                     <Image src="/logo.png" alt="SDG Nexus" width={56} height={56}
                         className="rounded-2xl mx-auto mb-4" style={{ objectFit: 'contain' }} />
                     <h1 className="text-2xl font-bold text-white">Join SDG Nexus</h1>
-                    <p className="text-sm text-gray-500 mt-1">Create your account to start driving impact</p>
+                    <p className="text-sm text-slate-400 mt-1">Create your account to start driving impact</p>
                 </div>
 
                 <form onSubmit={handleSubmit} className="space-y-4">
                     {/* Role Selection */}
                     <div>
-                        <label className="block text-xs font-medium text-gray-400 mb-2">Select Your Role</label>
+                        <label className="block text-xs font-medium text-slate-400 mb-2">Select Your Role</label>
                         <div className="grid grid-cols-2 gap-2">
                             {roles.map(r => (
                                 <button type="button" key={r.value}
                                     onClick={() => update('role', r.value)}
                                     className="p-3 rounded-xl text-left transition-all"
                                     style={{
-                                        background: form.role === r.value ? 'rgba(6,182,212,0.12)' : 'rgba(255,255,255,0.03)',
-                                        border: `1px solid ${form.role === r.value ? 'rgba(6,182,212,0.3)' : 'rgba(255,255,255,0.06)'}`,
+                                        background: form.role === r.value ? 'rgba(6,182,212,0.15)' : 'rgba(255,255,255,0.04)',
+                                        border: `1px solid ${form.role === r.value ? 'rgba(6,182,212,0.4)' : 'rgba(255,255,255,0.08)'}`,
                                     }}>
                                     <span className="text-lg">{r.icon}</span>
-                                    <p className="text-sm font-medium text-white mt-1">{r.label}</p>
-                                    <p className="text-[10px] text-gray-500">{r.desc}</p>
+                                    <p className={`text-sm font-medium mt-1 ${form.role === r.value ? 'text-cyan-300' : 'text-slate-200'}`}>{r.label}</p>
+                                    <p className="text-[10px] text-slate-500">{r.desc}</p>
                                 </button>
                             ))}
                         </div>
@@ -72,26 +72,26 @@ export default function RegisterPage() {
 
                     <div className="grid grid-cols-2 gap-3">
                         <div>
-                            <label className="block text-xs font-medium text-gray-400 mb-1.5">Full Name</label>
+                            <label className="block text-xs font-medium text-slate-400 mb-1.5">Full Name</label>
                             <input type="text" value={form.name} onChange={e => update('name', e.target.value)}
-                                className="input-dark" placeholder="Your name" required />
+                                className="input-dark-theme" placeholder="Your name" required />
                         </div>
                         <div>
-                            <label className="block text-xs font-medium text-gray-400 mb-1.5">Organization</label>
+                            <label className="block text-xs font-medium text-slate-400 mb-1.5">Organization</label>
                             <input type="text" value={form.orgName} onChange={e => update('orgName', e.target.value)}
-                                className="input-dark" placeholder="Org name" required />
+                                className="input-dark-theme" placeholder="Org name" required />
                         </div>
                     </div>
 
                     <div>
-                        <label className="block text-xs font-medium text-gray-400 mb-1.5">Email</label>
+                        <label className="block text-xs font-medium text-slate-400 mb-1.5">Email</label>
                         <input type="email" value={form.email} onChange={e => update('email', e.target.value)}
-                            className="input-dark" placeholder="your@email.com" required />
+                            className="input-dark-theme" placeholder="your@email.com" required />
                     </div>
                     <div>
-                        <label className="block text-xs font-medium text-gray-400 mb-1.5">Password</label>
+                        <label className="block text-xs font-medium text-slate-400 mb-1.5">Password</label>
                         <input type="password" value={form.password} onChange={e => update('password', e.target.value)}
-                            className="input-dark" placeholder="••••••••" required />
+                            className="input-dark-theme" placeholder="••••••••" required />
                     </div>
 
                     <button type="submit" disabled={loading}
@@ -100,7 +100,7 @@ export default function RegisterPage() {
                     </button>
                 </form>
 
-                <p className="text-center text-xs text-gray-500 mt-6">
+                <p className="text-center text-xs text-slate-500 mt-6">
                     Already have an account? <Link href="/login" className="text-cyan-400 hover:underline">Sign In</Link>
                 </p>
             </motion.div>

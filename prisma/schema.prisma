@@ -60,6 +60,7 @@ model User {
 
   // Relations
   donations     Donation[]
+  audit_flags   GovernmentAuditFlag[]
 
   @@index([role])
   @@map("users")
@@ -83,9 +84,13 @@ model Organization {
   impact_scores  ImpactScore[]
   csr_allocations CSRAllocation[] @relation("CorporateCSR")
   risk_flags     RiskFlag[]
+  audit_flags    GovernmentAuditFlag[]
+  financial_summary OrganizationFinancialSummary?
+  score_history  ImpactScoreHistory[]
 
   @@index([type])
   @@index([state])
+  @@index([district])
   @@index([verification_status])
   @@map("organizations")
 }
@@ -301,4 +306,78 @@ model AuditLog {
   @@index([action])
   @@index([created_at(sort: Desc)])
   @@map("audit_logs")
+}
+
+// ─── 13. GovernmentAuditFlags ────────────────────────────────
+
+enum FlagSeverity {
+  LOW
+  MEDIUM
+  HIGH
+}
+
+enum FlagStatus {
+  OPEN
+  UNDER_REVIEW
+  RESOLVED
+}
+
+model GovernmentAuditFlag {
+  id                 String       @id @default(uuid()) @db.Uuid
+  organization_id    String       @db.Uuid
+  flagged_by_user_id String       @db.Uuid
+  reason             String       @db.Text
+  severity           FlagSeverity
+  status             FlagStatus   @default(OPEN)
+  created_at         DateTime     @default(now()) @db.Timestamptz
+  resolved_at        DateTime?    @db.Timestamptz
+
+  // Relations
+  organization     Organization @relation(fields: [organization_id], references: [id], onDelete: Cascade)
+  flagged_by_user  User         @relation(fields: [flagged_by_user_id], references: [id], onDelete: Cascade)
+
+  @@index([organization_id])
+  @@index([status])
+  @@map("government_audit_flags")
+}
+
+// ─── 14. OrganizationFinancialSummary ────────────────────────
+
+model OrganizationFinancialSummary {
+  organization_id          String   @id @db.Uuid
+  total_csr_received       Decimal  @default(0) @db.Decimal(15, 2)
+  total_csr_disbursed      Decimal  @default(0) @db.Decimal(15, 2)
+  total_donations_received Decimal  @default(0) @db.Decimal(15, 2)
+  total_budget_utilized    Decimal  @default(0) @db.Decimal(15, 2)
+  active_projects_count    Int      @default(0)
+  completed_projects_count Int      @default(0)
+  last_updated             DateTime @default(now()) @updatedAt @db.Timestamptz
+
+  // Relations
+  organization Organization @relation(fields: [organization_id], references: [id], onDelete: Cascade)
+
+  @@index([total_csr_received])
+  @@map("org_financial_summaries")
+}
+
+// ─── 15. ImpactScoreHistory ──────────────────────────────────
+
+model ImpactScoreHistory {
+  id                     String   @id @default(uuid()) @db.Uuid
+  organization_id        String   @db.Uuid
+  final_score            Decimal  @db.Decimal(7, 2)
+  scale_score            Decimal  @db.Decimal(5, 2)
+  outcome_score          Decimal  @db.Decimal(5, 2)
+  efficiency_score       Decimal  @db.Decimal(5, 2)
+  transparency_score     Decimal  @db.Decimal(5, 2)
+  geographic_need_score  Decimal  @db.Decimal(5, 2)
+  calculation_version    String   @db.VarChar(10)
+  recorded_at            DateTime @default(now()) @db.Timestamptz
+
+  // Relations
+  organization Organization @relation(fields: [organization_id], references: [id], onDelete: Cascade)
+
+  @@index([organization_id])
+  @@index([recorded_at(sort: Desc)])
+  @@map("impact_score_history")
 }

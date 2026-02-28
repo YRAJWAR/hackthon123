@@ -1,3 +1,0 @@
-module.exports=[35112,(a,b,c)=>{"use strict";b.exports=a.r(42602).vendored["react-ssr"].ReactDOM},47663,a=>{"use strict";var b=a.i(87924),c=a.i(72131);function d({target:a,duration:d=2e3,prefix:e="",suffix:f="",decimals:g=0}){let[h,i]=(0,c.useState)(0);(0,c.useEffect)(()=>{let b=0,c=a/(d/16),e=setInterval(()=>{(b+=c)>=a?(i(a),clearInterval(e)):i(Math.floor(b))},16);return()=>clearInterval(e)},[a,d]);let j=g>0?h.toFixed(g):h.toLocaleString("en-IN");return(0,b.jsxs)("span",{className:"tabular-nums font-bold",children:[e,j,f]})}a.s(["default",()=>d])}];
-
-//# sourceMappingURL=_1aa3e8a3._.js.map

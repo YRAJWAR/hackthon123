@@ -74,6 +74,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../src/app/dashboard/government/organization/[id]/page.tsx
+{
+  type __IsExpected<Specific extends AppPageConfig<"/dashboard/government/organization/[id]">> = Specific
+  const handler = {} as typeof import("../../../src/app/dashboard/government/organization/[id]/page.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../src/app/dashboard/government/page.tsx
 {
   type __IsExpected<Specific extends AppPageConfig<"/dashboard/government">> = Specific
@@ -281,6 +290,42 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
   type __Unused = __Check
 }
 
+// Validate ../../../src/app/api/government/flag-organization/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/government/flag-organization">> = Specific
+  const handler = {} as typeof import("../../../src/app/api/government/flag-organization/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../src/app/api/government/organization/[id]/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/government/organization/[id]">> = Specific
+  const handler = {} as typeof import("../../../src/app/api/government/organization/[id]/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../src/app/api/government/organizations/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/government/organizations">> = Specific
+  const handler = {} as typeof import("../../../src/app/api/government/organizations/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../src/app/api/government/resolve-flag/[flagId]/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/government/resolve-flag/[flagId]">> = Specific
+  const handler = {} as typeof import("../../../src/app/api/government/resolve-flag/[flagId]/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
 // Validate ../../../src/app/api/impact-score/route.ts
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/impact-score">> = Specific
@@ -348,6 +393,15 @@ type RouteHandlerConfig<Route extends AppRouteHandlerRoutes = AppRouteHandlerRou
 {
   type __IsExpected<Specific extends RouteHandlerConfig<"/api/public/organizations">> = Specific
   const handler = {} as typeof import("../../../src/app/api/public/organizations/route.js")
+  type __Check = __IsExpected<typeof handler>
+  // @ts-ignore
+  type __Unused = __Check
+}
+
+// Validate ../../../src/app/api/razorpay/route.ts
+{
+  type __IsExpected<Specific extends RouteHandlerConfig<"/api/razorpay">> = Specific
+  const handler = {} as typeof import("../../../src/app/api/razorpay/route.js")
   type __Check = __IsExpected<typeof handler>
   // @ts-ignore
   type __Unused = __Check

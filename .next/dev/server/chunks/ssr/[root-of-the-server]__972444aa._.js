@@ -179,6 +179,106 @@ const MOCK_USERS = [
         organization_name: 'Individual',
         verification_status: 'verified',
         created_at: '2024-04-05'
+    },
+    {
+        id: 'org2',
+        name: 'Sanjay Mehta',
+        email: 'sanjay@ecoindia.org',
+        password: 'password123',
+        role: 'ngo',
+        organization_name: 'EcoIndia Trust',
+        verification_status: 'verified',
+        created_at: '2024-02-20'
+    },
+    {
+        id: 'org3',
+        name: 'Dr. Kavita Rao',
+        email: 'kavita@healthbridge.org',
+        password: 'password123',
+        role: 'ngo',
+        organization_name: 'HealthBridge India',
+        verification_status: 'verified',
+        created_at: '2023-11-05'
+    },
+    {
+        id: 'org4',
+        name: 'Arjun Nair',
+        email: 'arjun@blueocean.org',
+        password: 'password123',
+        role: 'ngo',
+        organization_name: 'BlueOcean NGO',
+        verification_status: 'verified',
+        created_at: '2024-05-12'
+    },
+    {
+        id: 'org5',
+        name: 'Neha Kapoor',
+        email: 'neha@edurise.org',
+        password: 'password123',
+        role: 'ngo',
+        organization_name: 'EduRise Foundation',
+        verification_status: 'pending',
+        created_at: '2024-08-18'
+    },
+    {
+        id: 'org6',
+        name: 'Ramesh Yadav',
+        email: 'ramesh@agrosustain.org',
+        password: 'password123',
+        role: 'ngo',
+        organization_name: 'AgroSustain India',
+        verification_status: 'verified',
+        created_at: '2024-01-28'
+    },
+    {
+        id: 'corp2',
+        name: 'Sunita Reddy',
+        email: 'sunita@infoway.com',
+        password: 'password123',
+        role: 'corporate',
+        organization_name: 'InfoWay Solutions CSR',
+        verification_status: 'verified',
+        created_at: '2024-04-15'
+    },
+    {
+        id: 'corp3',
+        name: 'Amit Joshi',
+        email: 'amit@reliancefdn.org',
+        password: 'password123',
+        role: 'corporate',
+        organization_name: 'Reliance Foundation CSR',
+        verification_status: 'verified',
+        created_at: '2023-09-01'
+    },
+    {
+        id: 'corp4',
+        name: 'Deepa Menon',
+        email: 'deepa@tatacsr.org',
+        password: 'password123',
+        role: 'corporate',
+        organization_name: 'Tata Trusts CSR',
+        verification_status: 'verified',
+        created_at: '2023-06-20'
+    },
+    {
+        id: 'ngo7',
+        name: 'Farhan Sheikh',
+        email: 'farhan@safewater.org',
+        password: 'password123',
+        role: 'ngo',
+        organization_name: 'SafeWater Initiative',
+        verification_status: 'pending',
+        created_at: '2024-10-01'
+    },
+    {
+        id: 'ngo8',
+        name: 'Lakshmi Iyer',
+        email: 'lakshmi@ruraltech.org',
+        password: 'password123',
+        role: 'ngo',
+        organization_name: 'RuralTech Connect',
+        verification_status: 'verified',
+        created_at: '2024-03-22'
     }
 ];
 const MOCK_PROJECTS = [
@@ -349,6 +449,230 @@ const MOCK_PROJECTS = [
         status: 'completed',
         created_at: '2024-07-01',
         impact_score: 802
+    },
+    {
+        id: 'p7',
+        title: 'Digital Classrooms for Delhi Slums',
+        description: 'Setting up 50 digital learning centers in Delhi slums with tablets and internet.',
+        organization_id: 'org5',
+        organization_name: 'EduRise Foundation',
+        budget: 2200000,
+        spent: 1100000,
+        location: {
+            lat: 28.613,
+            lng: 77.229,
+            name: 'Delhi'
+        },
+        timeline: {
+            start: '2024-08-01',
+            end: '2025-08-01'
+        },
+        beneficiary_count: 12000,
+        sdg_tags: [
+            4,
+            10,
+            9
+        ],
+        sdg_reasoning: 'Education (SDG 4), reduced inequalities (SDG 10), innovation (SDG 9)',
+        status: 'active',
+        created_at: '2024-08-01',
+        impact_score: 768
+    },
+    {
+        id: 'p8',
+        title: 'Organic Farming Revolution',
+        description: 'Training 3,000 farmers in organic methods and marketplace access in MP.',
+        organization_id: 'org6',
+        organization_name: 'AgroSustain India',
+        budget: 3100000,
+        spent: 1900000,
+        location: {
+            lat: 23.259,
+            lng: 77.412,
+            name: 'Madhya Pradesh'
+        },
+        timeline: {
+            start: '2024-02-01',
+            end: '2025-06-01'
+        },
+        beneficiary_count: 18000,
+        sdg_tags: [
+            2,
+            1,
+            15
+        ],
+        sdg_reasoning: 'Zero hunger (SDG 2), no poverty (SDG 1), life on land (SDG 15)',
+        status: 'active',
+        created_at: '2024-02-01',
+        impact_score: 812
+    },
+    {
+        id: 'p9',
+        title: 'TechServe Employee Volunteer Program',
+        description: 'Corporate volunteering — engineering teams mentor rural students.',
+        organization_id: 'u3',
+        organization_name: 'TechServe India CSR',
+        budget: 1500000,
+        spent: 950000,
+        location: {
+            lat: 17.385,
+            lng: 78.486,
+            name: 'Telangana'
+        },
+        timeline: {
+            start: '2024-05-01',
+            end: '2025-05-01'
+        },
+        beneficiary_count: 8000,
+        sdg_tags: [
+            4,
+            8,
+            17
+        ],
+        sdg_reasoning: 'Education (SDG 4), decent work (SDG 8), partnerships (SDG 17)',
+        status: 'active',
+        created_at: '2024-05-01',
+        impact_score: 780
+    },
+    {
+        id: 'p10',
+        title: 'InfoWay Rural Internet Project',
+        description: 'Bringing broadband connectivity to 100 villages across Gujarat.',
+        organization_id: 'corp2',
+        organization_name: 'InfoWay Solutions CSR',
+        budget: 8500000,
+        spent: 4200000,
+        location: {
+            lat: 22.258,
+            lng: 71.192,
+            name: 'Gujarat'
+        },
+        timeline: {
+            start: '2024-01-15',
+            end: '2025-12-01'
+        },
+        beneficiary_count: 95000,
+        sdg_tags: [
+            9,
+            4,
+            8
+        ],
+        sdg_reasoning: 'Innovation (SDG 9), education (SDG 4), economic growth (SDG 8)',
+        status: 'active',
+        created_at: '2024-01-15',
+        impact_score: 875
+    },
+    {
+        id: 'p11',
+        title: 'Reliance Clean Energy Villages',
+        description: 'Installing solar microgrids in 200 off-grid villages across Rajasthan and MP.',
+        organization_id: 'corp3',
+        organization_name: 'Reliance Foundation CSR',
+        budget: 15000000,
+        spent: 9800000,
+        location: {
+            lat: 26.912,
+            lng: 75.787,
+            name: 'Rajasthan'
+        },
+        timeline: {
+            start: '2023-10-01',
+            end: '2025-10-01'
+        },
+        beneficiary_count: 250000,
+        sdg_tags: [
+            7,
+            13,
+            1
+        ],
+        sdg_reasoning: 'Clean energy (SDG 7), climate action (SDG 13), no poverty (SDG 1)',
+        status: 'active',
+        created_at: '2023-10-01',
+        impact_score: 945
+    },
+    {
+        id: 'p12',
+        title: 'Tata Rural Healthcare Network',
+        description: 'Building 40 primary health centres in tribal areas of Jharkhand and Chhattisgarh.',
+        organization_id: 'corp4',
+        organization_name: 'Tata Trusts CSR',
+        budget: 12000000,
+        spent: 7500000,
+        location: {
+            lat: 23.610,
+            lng: 85.279,
+            name: 'Jharkhand'
+        },
+        timeline: {
+            start: '2023-07-01',
+            end: '2025-07-01'
+        },
+        beneficiary_count: 180000,
+        sdg_tags: [
+            3,
+            1,
+            10
+        ],
+        sdg_reasoning: 'Health (SDG 3), poverty (SDG 1), inequalities (SDG 10)',
+        status: 'active',
+        created_at: '2023-07-01',
+        impact_score: 920
+    },
+    {
+        id: 'p13',
+        title: 'SafeWater Bore Well Program',
+        description: 'Drilling 500 bore wells with filtration systems across drought-prone Bundelkhand.',
+        organization_id: 'ngo7',
+        organization_name: 'SafeWater Initiative',
+        budget: 4500000,
+        spent: 1200000,
+        location: {
+            lat: 25.431,
+            lng: 80.337,
+            name: 'Uttar Pradesh'
+        },
+        timeline: {
+            start: '2024-10-01',
+            end: '2026-03-01'
+        },
+        beneficiary_count: 75000,
+        sdg_tags: [
+            6,
+            3,
+            1
+        ],
+        sdg_reasoning: 'Water (SDG 6), health (SDG 3), poverty (SDG 1)',
+        status: 'active',
+        created_at: '2024-10-01',
+        impact_score: 710
+    },
+    {
+        id: 'p14',
+        title: 'RuralTech Digital Literacy Mission',
+        description: 'Training 10,000 rural youth in coding and digital skills across Tamil Nadu.',
+        organization_id: 'ngo8',
+        organization_name: 'RuralTech Connect',
+        budget: 3800000,
+        spent: 2400000,
+        location: {
+            lat: 11.127,
+            lng: 78.656,
+            name: 'Tamil Nadu'
+        },
+        timeline: {
+            start: '2024-04-01',
+            end: '2025-09-01'
+        },
+        beneficiary_count: 10000,
+        sdg_tags: [
+            4,
+            8,
+            9
+        ],
+        sdg_reasoning: 'Education (SDG 4), decent work (SDG 8), innovation (SDG 9)',
+        status: 'active',
+        created_at: '2024-04-01',
+        impact_score: 838
     }
 ];
 const MOCK_ACTIVITIES = [
@@ -421,6 +745,86 @@ const MOCK_ACTIVITIES = [
         hash: 'a7b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8',
         location: 'Ranchi, Jharkhand',
         verified: false
+    },
+    {
+        id: 'a8',
+        project_id: 'p7',
+        project_title: 'Digital Classrooms for Delhi Slums',
+        description: 'Setup 15 digital learning centers with 300 tablets in Nehru Nagar',
+        timestamp: '2024-12-20T10:00:00Z',
+        hash: 'b8c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9',
+        location: 'Nehru Nagar, Delhi',
+        verified: true
+    },
+    {
+        id: 'a9',
+        project_id: 'p8',
+        project_title: 'Organic Farming Revolution',
+        description: 'Trained 800 farmers in composting and organic certification process',
+        timestamp: '2024-11-05T09:30:00Z',
+        hash: 'c9d0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0',
+        location: 'Indore, Madhya Pradesh',
+        verified: true
+    },
+    {
+        id: 'a10',
+        project_id: 'p9',
+        project_title: 'TechServe Employee Volunteer Program',
+        description: '120 engineers mentored 500 students across 10 rural schools',
+        timestamp: '2024-10-15T14:00:00Z',
+        hash: 'd0e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1',
+        location: 'Hyderabad, Telangana',
+        verified: true
+    },
+    {
+        id: 'a11',
+        project_id: 'p10',
+        project_title: 'InfoWay Rural Internet Project',
+        description: 'Installed fibre optic backbone in 40 villages, 35,000 people connected',
+        timestamp: '2025-01-20T11:00:00Z',
+        hash: 'e1f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2',
+        location: 'Kutch, Gujarat',
+        verified: true
+    },
+    {
+        id: 'a12',
+        project_id: 'p11',
+        project_title: 'Reliance Clean Energy Villages',
+        description: 'Solar microgrids installed in 85 villages, powering 12,000 homes',
+        timestamp: '2025-01-05T08:00:00Z',
+        hash: 'f2a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3',
+        location: 'Jodhpur, Rajasthan',
+        verified: true
+    },
+    {
+        id: 'a13',
+        project_id: 'p12',
+        project_title: 'Tata Rural Healthcare Network',
+        description: 'Completed 18 primary health centres, 45,000 patients treated',
+        timestamp: '2025-02-10T09:45:00Z',
+        hash: 'a3b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4',
+        location: 'Ranchi, Jharkhand',
+        verified: true
+    },
+    {
+        id: 'a14',
+        project_id: 'p13',
+        project_title: 'SafeWater Bore Well Program',
+        description: 'Drilled 120 bore wells in Banda district, water tested and approved',
+        timestamp: '2025-01-25T10:30:00Z',
+        hash: 'b4c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5',
+        location: 'Banda, Uttar Pradesh',
+        verified: false
+    },
+    {
+        id: 'a15',
+        project_id: 'p14',
+        project_title: 'RuralTech Digital Literacy Mission',
+        description: 'Batch 1 completed — 2,500 youth certified in basic coding',
+        timestamp: '2024-12-10T15:00:00Z',
+        hash: 'c5d6e7f8a9b0c1d2e3f4a5b6c7d8e9f0a1b2c3d4e5f6a7b8c9d0e1f2a3b4c5d6',
+        location: 'Coimbatore, Tamil Nadu',
+        verified: true
     }
 ];
 const MOCK_DONATIONS = [
@@ -501,6 +905,97 @@ const MOCK_DONATIONS = [
             12
         ],
         timestamp: '2024-09-15'
+    },
+    {
+        id: 'd7',
+        donor_id: 'u4',
+        donor_name: 'Vikram Patel',
+        project_id: 'p7',
+        project_title: 'Digital Classrooms for Delhi Slums',
+        amount: 80000,
+        sdg_tags: [
+            4,
+            10
+        ],
+        timestamp: '2024-11-15'
+    },
+    {
+        id: 'd8',
+        donor_id: 'donor2',
+        donor_name: 'Meera Gupta',
+        project_id: 'p8',
+        project_title: 'Organic Farming Revolution',
+        amount: 120000,
+        sdg_tags: [
+            2,
+            1
+        ],
+        timestamp: '2024-10-01'
+    },
+    {
+        id: 'd9',
+        donor_id: 'donor3',
+        donor_name: 'Arjun Singh',
+        project_id: 'p12',
+        project_title: 'Tata Rural Healthcare Network',
+        amount: 500000,
+        sdg_tags: [
+            3,
+            1
+        ],
+        timestamp: '2024-12-20'
+    },
+    {
+        id: 'd10',
+        donor_id: 'u4',
+        donor_name: 'Vikram Patel',
+        project_id: 'p14',
+        project_title: 'RuralTech Digital Literacy Mission',
+        amount: 60000,
+        sdg_tags: [
+            4,
+            8
+        ],
+        timestamp: '2025-01-05'
+    },
+    {
+        id: 'd11',
+        donor_id: 'donor4',
+        donor_name: 'Sneha Iyer',
+        project_id: 'p11',
+        project_title: 'Reliance Clean Energy Villages',
+        amount: 300000,
+        sdg_tags: [
+            7,
+            13
+        ],
+        timestamp: '2024-11-28'
+    },
+    {
+        id: 'd12',
+        donor_id: 'donor5',
+        donor_name: 'Rahul Kapoor',
+        project_id: 'p13',
+        project_title: 'SafeWater Bore Well Program',
+        amount: 175000,
+        sdg_tags: [
+            6,
+            3
+        ],
+        timestamp: '2025-02-01'
+    },
+    {
+        id: 'd13',
+        donor_id: 'donor2',
+        donor_name: 'Meera Gupta',
+        project_id: 'p10',
+        project_title: 'InfoWay Rural Internet Project',
+        amount: 250000,
+        sdg_tags: [
+            9,
+            4
+        ],
+        timestamp: '2024-09-30'
     }
 ];
 const MOCK_IMPACT_SCORES = [

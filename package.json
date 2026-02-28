@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dev": "next dev --turbopack",
+    "dev": "next dev",
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
@@ -39,6 +39,7 @@
     "prisma": "^7.4.2",
     "react": "^19.2.4",
     "react-dom": "^19.2.4",
+    "react-is": "^19.2.4",
     "react-leaflet": "^5.0.0",
     "recharts": "^3.7.0",
     "tailwindcss": "^4.2.1",
@@ -48,6 +49,8 @@
     "seed": "npx tsx prisma/seed.ts"
   },
   "devDependencies": {
+    "@types/geojson": "^7946.0.16",
+    "@types/trusted-types": "^2.0.7",
     "dotenv": "^17.3.1",
     "tsx": "^4.21.0"
   }

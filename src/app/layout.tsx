@@ -19,6 +19,7 @@ export default function RootLayout({ children }: { children: React.ReactNode }) 
             <head>
                 <link rel="icon" type="image/png" href="/favicon.png" />
                 <link rel="apple-touch-icon" href="/logo.png" />
+                <script src="https://checkout.razorpay.com/v1/checkout.js" async></script>
             </head>
             <body className={inter.className} style={{ background: '#0a0f1e' }}>
                 <AuthProvider>
