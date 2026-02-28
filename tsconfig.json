@@ -17,6 +17,13 @@
     "isolatedModules": true,
     "jsx": "react-jsx",
     "incremental": true,
+    "types": [
+      "node",
+      "geojson",
+      "trusted-types",
+      "react",
+      "react-dom"
+    ],
     "plugins": [
       {
         "name": "next"
