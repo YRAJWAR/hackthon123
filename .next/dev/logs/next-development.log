@@ -435,3 +435,8 @@ Read more: https://nextjs.org/docs/app/api-reference/components/image#loading
 [01:07:19.928] Server  LOG     ✓ Finished writing to filesystem cache in 13.7s
 [01:07:39.070] Server  LOG     ✓ Finished filesystem cache database compaction in 19.3s
 [01:39:44.331] Server  LOG     ✓ Finished writing to filesystem cache in 30.0s
+[02:09:13.231] Server  LOG     ✓ Finished filesystem cache database compaction in 12.1s
+[02:09:13.346] Server  LOG     ✓ Finished writing to filesystem cache in 10.3s
+[02:09:19.200] Server  ERROR   Error: EPIPE: broken pipe, write
+[02:09:19.631] Server  ERROR   ⨯ "uncaughtException:" Error: EPIPE: broken pipe, write
+[02:09:20.122] Server  ERROR   ⨯ "uncaughtException: " Error: EPIPE: broken pipe, write
