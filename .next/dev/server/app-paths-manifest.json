@@ -1,5 +1,11 @@
 {
   "/_not-found/page": "app/_not-found/page.js",
+  "/api/classify-sdg/route": "app/api/classify-sdg/route.js",
+  "/api/organizations/[id]/impact-breakdown/route": "app/api/organizations/[id]/impact-breakdown/route.js",
+  "/api/projects/route": "app/api/projects/route.js",
+  "/api/public/organizations/[id]/route": "app/api/public/organizations/[id]/route.js",
+  "/api/public/organizations/route": "app/api/public/organizations/route.js",
+  "/dashboard/analytics/page": "app/dashboard/analytics/page.js",
   "/dashboard/corporate/page": "app/dashboard/corporate/page.js",
   "/dashboard/donor/page": "app/dashboard/donor/page.js",
   "/dashboard/government/page": "app/dashboard/government/page.js",
@@ -10,7 +16,8 @@
   "/dashboard/ngo/page": "app/dashboard/ngo/page.js",
   "/dashboard/page": "app/dashboard/page.js",
   "/dashboard/profile/page": "app/dashboard/profile/page.js",
+  "/explore/organization/[id]/page": "app/explore/organization/[id]/page.js",
+  "/explore/page": "app/explore/page.js",
   "/login/page": "app/login/page.js",
-  "/page": "app/page.js",
-  "/register/page": "app/register/page.js"
+  "/page": "app/page.js"
 }

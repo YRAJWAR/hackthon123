@@ -122,6 +122,12 @@ async function aggregateFromDB(orgId: string): Promise<OrgScoreResult | null> {
                 geographic_need_score: detailed.geographicNeedScore,
                 transparency_score: detailed.transparencyScore,
                 final_score: detailed.finalScore,
+                calculation_version: "2.0",
+                raw_scale_value: detailed.rawScaleValue,
+                raw_outcome_value: detailed.rawOutcomeValue,
+                raw_efficiency_value: detailed.rawEfficiencyValue,
+                raw_geo_value: detailed.rawGeoValue,
+                raw_transparency_value: detailed.rawTransparencyValue,
             },
         });
 

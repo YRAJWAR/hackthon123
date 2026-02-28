@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useRouter } from 'next/navigation';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { useAuth } from '@/lib/AuthContext';
 import { UserRole } from '@/data/mockData';
@@ -42,8 +43,8 @@ export default function RegisterPage() {
                 className="glass-card p-8 w-full max-w-lg relative z-10"
             >
                 <div className="text-center mb-8">
-                    <div className="w-14 h-14 rounded-2xl mx-auto mb-4 flex items-center justify-center text-2xl"
-                        style={{ background: 'linear-gradient(135deg, #10b981, #06b6d4)' }}>🌍</div>
+                    <Image src="/logo.png" alt="SDG Nexus" width={56} height={56}
+                        className="rounded-2xl mx-auto mb-4" style={{ objectFit: 'contain' }} />
                     <h1 className="text-2xl font-bold text-white">Join SDG Nexus</h1>
                     <p className="text-sm text-gray-500 mt-1">Create your account to start driving impact</p>
                 </div>

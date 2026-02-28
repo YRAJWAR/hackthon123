@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname } from 'next/navigation';
 import { useAuth } from '@/lib/AuthContext';
 import { motion } from 'framer-motion';
@@ -55,19 +56,22 @@ export default function Sidebar() {
             transition={{ duration: 0.4, ease: 'easeOut' }}
             className="fixed left-0 top-0 h-screen w-[260px] flex flex-col z-50"
             style={{
-                background: '#1a1f36',
+                background: '#ffffff',
+                borderRight: '1px solid #e2e8f0',
+                boxShadow: '2px 0 8px rgba(0,0,0,0.04)',
             }}
         >
             {/* Logo */}
             <div className="p-6 pb-4">
                 <Link href="/" className="flex items-center gap-3 no-underline">
-                    <div className="w-10 h-10 rounded-xl flex items-center justify-center text-xl"
-                        style={{ background: '#3b82f6' }}>
-                        🌍
+                    <div className="w-10 h-10 rounded-xl overflow-hidden flex items-center justify-center flex-shrink-0"
+                        style={{ background: '#0f172a', padding: 2 }}>
+                        <Image src="/logo.png" alt="SDG Nexus" width={36} height={36}
+                            style={{ objectFit: 'contain' }} />
                     </div>
                     <div>
-                        <h1 className="text-lg font-bold text-white">SDG Nexus</h1>
-                        <p className="text-[10px] tracking-wider uppercase" style={{ color: '#64748b' }}>Impact Intelligence</p>
+                        <h1 className="text-lg font-bold" style={{ color: '#0f172a' }}>SDG Nexus</h1>
+                        <p className="text-[10px] tracking-wider uppercase" style={{ color: '#94a3b8' }}>Impact Intelligence</p>
                     </div>
                 </Link>
             </div>
@@ -75,8 +79,9 @@ export default function Sidebar() {
             {/* Role Badge */}
             <div className="mx-4 mb-5 px-3 py-2 rounded-lg text-xs font-semibold text-center"
                 style={{
-                    background: 'rgba(59,130,246,0.15)',
-                    color: '#60a5fa',
+                    background: '#f0fdf4',
+                    color: '#16a34a',
+                    border: '1px solid #dcfce7',
                 }}>
                 {role.toUpperCase()} DASHBOARD
             </div>
@@ -89,15 +94,16 @@ export default function Sidebar() {
                         <Link key={item.href} href={item.href}
                             className="flex items-center gap-3 px-4 py-3 rounded-xl text-sm transition-all no-underline"
                             style={{
-                                background: isActive ? 'rgba(59,130,246,0.15)' : 'transparent',
-                                color: isActive ? '#60a5fa' : '#94a3b8',
+                                background: isActive ? '#f0fdf4' : 'transparent',
+                                color: isActive ? '#15803d' : '#64748b',
                                 fontWeight: isActive ? 600 : 400,
+                                borderLeft: isActive ? '3px solid #22c55e' : '3px solid transparent',
                             }}
                         >
                             <span className="text-lg">{item.icon}</span>
                             <span>{item.label}</span>
                             {isActive && (
-                                <div className="ml-auto w-1.5 h-1.5 rounded-full" style={{ background: '#3b82f6' }} />
+                                <div className="ml-auto w-1.5 h-1.5 rounded-full" style={{ background: '#22c55e' }} />
                             )}
                         </Link>
                     );
@@ -105,24 +111,39 @@ export default function Sidebar() {
             </nav>
 
             {/* User Info & Logout */}
-            <div className="p-4" style={{ borderTop: '1px solid rgba(255,255,255,0.08)' }}>
-                <div className="flex items-center gap-3 mb-3">
-                    <div className="w-9 h-9 rounded-full flex items-center justify-center text-sm font-bold text-white"
-                        style={{ background: '#3b82f6' }}>
+            <div className="p-4" style={{ borderTop: '1px solid #e2e8f0' }}>
+                <div className="flex items-center gap-3 mb-4">
+                    <div className="w-10 h-10 rounded-full flex items-center justify-center text-sm font-bold text-white"
+                        style={{ background: '#22c55e' }}>
                         {user?.name?.charAt(0) || '?'}
                     </div>
                     <div className="flex-1 min-w-0">
-                        <p className="text-sm font-medium text-gray-200 truncate">{user?.name}</p>
-                        <p className="text-xs truncate" style={{ color: '#64748b' }}>{user?.organization_name}</p>
+                        <p className="text-sm font-semibold truncate" style={{ color: '#0f172a' }}>{user?.name}</p>
+                        <p className="text-[11px] truncate" style={{ color: '#94a3b8' }}>{user?.organization_name}</p>
                     </div>
                 </div>
                 <button onClick={logout}
-                    className="w-full px-3 py-2 rounded-lg text-xs transition-all cursor-pointer"
-                    style={{ color: '#94a3b8', background: 'transparent', border: 'none' }}
-                    onMouseEnter={e => { e.currentTarget.style.background = 'rgba(239,68,68,0.1)'; e.currentTarget.style.color = '#f87171'; }}
-                    onMouseLeave={e => { e.currentTarget.style.background = 'transparent'; e.currentTarget.style.color = '#94a3b8'; }}
+                    className="w-full flex items-center justify-center gap-2 px-4 py-2.5 rounded-xl text-sm font-medium transition-all cursor-pointer"
+                    style={{
+                        color: '#ef4444',
+                        background: '#fef2f2',
+                        border: '1.5px solid #fecaca',
+                    }}
+                    onMouseEnter={e => {
+                        e.currentTarget.style.background = '#fee2e2';
+                        e.currentTarget.style.borderColor = '#fca5a5';
+                        e.currentTarget.style.transform = 'translateY(-1px)';
+                        e.currentTarget.style.boxShadow = '0 2px 8px rgba(239,68,68,0.15)';
+                    }}
+                    onMouseLeave={e => {
+                        e.currentTarget.style.background = '#fef2f2';
+                        e.currentTarget.style.borderColor = '#fecaca';
+                        e.currentTarget.style.transform = 'translateY(0)';
+                        e.currentTarget.style.boxShadow = 'none';
+                    }}
                 >
-                    ↪ Sign Out
+                    <span>🚪</span>
+                    <span>Sign Out</span>
                 </button>
             </div>
         </motion.aside>

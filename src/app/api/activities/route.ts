@@ -1,81 +1,82 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { recalculateOrgScore } from '@/services/impactScoringService';
+import { handleApiError } from '@/server/middleware/errorHandler';
+import { validateActivityCreate } from '@/server/validators';
+import { activityRepo, auditLogRepo } from '@/server/repositories';
+import { successResponse, sha256, sanitizeString } from '@/server/utils';
 
 // ──────────────────────────────────────────────────────────────
 // POST /api/activities — Log a new project activity
-// Triggers impact score recalculation for the org
 // ──────────────────────────────────────────────────────────────
-
-interface ActivityInput {
-    project_id: string;
-    activity_title: string;
-    description: string;
-    latitude?: number;
-    longitude?: number;
-    proof_url?: string;
-}
+// Enterprise-grade:
+// ✓ Input validation
+// ✓ Sanitized inputs
+// ✓ SHA-256 hash generation
+// ✓ Score recalculation
+// ✓ Audit logging
+// ✓ Structured responses
+// ──────────────────────────────────────────────────────────────
 
 export async function POST(request: NextRequest) {
     try {
-        const body: ActivityInput = await request.json();
+        const body = await request.json();
 
         // Validation
-        const errors: string[] = [];
-        if (!body.project_id) errors.push('project_id is required');
-        if (!body.activity_title?.trim()) errors.push('activity_title is required');
-        if (!body.description?.trim()) errors.push('description is required');
-        if (errors.length > 0) {
-            return NextResponse.json({ error: 'Validation failed', details: errors }, { status: 400 });
+        const validation = validateActivityCreate(body);
+        if (!validation.success) {
+            const { AppError } = await import('@/server/middleware/errorHandler');
+            throw AppError.badRequest('Validation failed', validation.errors);
         }
+        const input = validation.data;
+
+        // Sanitize
+        input.activity_title = sanitizeString(input.activity_title);
+        input.description = sanitizeString(input.description);
 
         // Generate SHA-256 hash
-        const content = `${body.activity_title}|${body.description}|${new Date().toISOString()}`;
-        const hashBuffer = new TextEncoder().encode(content);
-        const hashArray = await crypto.subtle.digest('SHA-256', hashBuffer);
-        const hashHex = Array.from(new Uint8Array(hashArray))
-            .map(b => b.toString(16).padStart(2, '0')).join('');
+        const content = `${input.activity_title}|${input.description}|${new Date().toISOString()}`;
+        const hashHex = await sha256(content);
 
         let savedToDb = false;
-        let orgId: string | null = null;
 
         try {
-            const prismaModule = await import('@/lib/prisma');
-            const prisma = prismaModule.default;
-
-            // Fetch the project to get org ID
-            const project = await prisma.project.findUnique({
-                where: { id: body.project_id },
-                select: { organization_id: true },
-            });
-
-            if (!project) {
-                return NextResponse.json({ error: 'Project not found' }, { status: 404 });
+            // Get org ID for score recalc
+            const orgId = await activityRepo.getProjectOrgId(input.project_id);
+            if (!orgId) {
+                const { AppError } = await import('@/server/middleware/errorHandler');
+                throw AppError.notFound('Project');
             }
 
-            orgId = project.organization_id;
-
             // Create activity
-            const activity = await prisma.projectActivity.create({
-                data: {
-                    project_id: body.project_id,
-                    activity_title: body.activity_title,
-                    description: body.description,
-                    latitude: body.latitude ?? null,
-                    longitude: body.longitude ?? null,
-                    proof_url: body.proof_url ?? null,
-                    hash_value: hashHex,
-                },
+            const activity = await activityRepo.create({
+                project_id: input.project_id,
+                activity_title: input.activity_title,
+                description: input.description,
+                latitude: input.latitude ?? null,
+                longitude: input.longitude ?? null,
+                proof_url: input.proof_url ?? null,
+                hash_value: hashHex,
             });
 
             savedToDb = true;
 
-            // Recalculate impact score for the organization
-            const updatedScore = await recalculateOrgScore(orgId!);
+            // Recalculate impact score
+            const updatedScore = await recalculateOrgScore(orgId);
 
-            return NextResponse.json({
+            // Audit log
+            await auditLogRepo.create({
+                actor_id: orgId,
+                actor_role: 'SYSTEM',
+                action: 'ACTIVITY_CREATED',
+                entity_type: 'ProjectActivity',
+                entity_id: activity.id,
+                new_value: { project_id: input.project_id, title: input.activity_title, hash: hashHex },
+            });
+
+            return NextResponse.json(successResponse({
                 activity: {
                     id: activity.id,
-                    ...body,
+                    ...input,
                     hash_value: hashHex,
                     created_at: activity.created_at.toISOString(),
                 },
@@ -84,23 +85,23 @@ export async function POST(request: NextRequest) {
                     final_score: updatedScore.final_score,
                 },
                 persisted: true,
-            }, { status: 201 });
-        } catch {
+            }), { status: 201 });
+        } catch (error) {
+            if (error && typeof error === 'object' && 'statusCode' in error) throw error;
             // DB not available — return in-memory result
         }
 
-        return NextResponse.json({
+        return NextResponse.json(successResponse({
             activity: {
                 id: crypto.randomUUID(),
-                ...body,
+                ...input,
                 hash_value: hashHex,
                 created_at: new Date().toISOString(),
             },
             impact_score_updated: null,
             persisted: savedToDb,
-        }, { status: 201 });
+        }), { status: 201 });
     } catch (error) {
-        console.error('Activity creation error:', error);
-        return NextResponse.json({ error: 'Activity creation failed' }, { status: 500 });
+        return handleApiError(error);
     }
 }

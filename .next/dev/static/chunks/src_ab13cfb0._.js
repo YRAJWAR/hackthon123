@@ -1,0 +1,1088 @@
+(globalThis.TURBOPACK || (globalThis.TURBOPACK = [])).push([typeof document === "object" ? document.currentScript : undefined,
+"[project]/src/services/matching.ts [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "findMatches",
+    ()=>findMatches
+]);
+// Smart Matching Engine
+// Match Score = SDG Overlap(40%) + Location Proximity(30%) + Performance Rating(30%)
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$mockData$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/data/mockData.ts [app-client] (ecmascript)");
+;
+function sdgOverlap(ngoSDGs, targetSDGs) {
+    if (targetSDGs.length === 0) return 50;
+    const overlap = ngoSDGs.filter((s)=>targetSDGs.includes(s)).length;
+    return Math.round(overlap / Math.max(targetSDGs.length, 1) * 100);
+}
+function locationProximity(ngoState, targetState) {
+    if (!targetState) return 50;
+    return ngoState.toLowerCase() === targetState.toLowerCase() ? 100 : 30;
+}
+function performanceRating(impactScore) {
+    return Math.round(impactScore / 1000 * 100);
+}
+function findMatches(ngos, filters, corporateSDGs = [
+    3,
+    4,
+    6,
+    7,
+    11
+]) {
+    let filtered = [
+        ...ngos
+    ];
+    if (filters.state) {
+        filtered = filtered.filter((n)=>n.location.state.toLowerCase().includes(filters.state.toLowerCase()));
+    }
+    if (filters.min_score) {
+        filtered = filtered.filter((n)=>n.impact_score >= filters.min_score);
+    }
+    if (filters.max_funding) {
+        filtered = filtered.filter((n)=>n.funding_need <= filters.max_funding);
+    }
+    const targetSDGs = filters.sdg_focus || corporateSDGs;
+    return filtered.map((ngo)=>{
+        const overlap = sdgOverlap(ngo.sdg_focus, targetSDGs);
+        const proximity = locationProximity(ngo.location.state, filters.state);
+        const perf = performanceRating(ngo.impact_score);
+        const matchScore = Math.round(0.4 * overlap + 0.3 * proximity + 0.3 * perf);
+        const reasons = [];
+        const overlapSDGs = ngo.sdg_focus.filter((s)=>targetSDGs.includes(s));
+        if (overlapSDGs.length > 0) {
+            reasons.push(`Shares focus on ${overlapSDGs.map((s)=>__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$mockData$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SDG_INFO"].find((i)=>i.id === s)?.name).join(', ')}`);
+        }
+        if (ngo.impact_score >= 850) reasons.push('High-impact performer');
+        if (ngo.verified) reasons.push('Verified organization');
+        return {
+            ngo,
+            match_score: matchScore,
+            sdg_overlap_pct: overlap,
+            reasons
+        };
+    }).sort((a, b)=>b.match_score - a.match_score);
+}
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/components/ui/AnimatedCounter.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>AnimatedCounter
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature();
+'use client';
+;
+function AnimatedCounter({ target, duration = 2000, prefix = '', suffix = '', decimals = 0 }) {
+    _s();
+    const [count, setCount] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(0);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useEffect"])({
+        "AnimatedCounter.useEffect": ()=>{
+            let start = 0;
+            const increment = target / (duration / 16);
+            const timer = setInterval({
+                "AnimatedCounter.useEffect.timer": ()=>{
+                    start += increment;
+                    if (start >= target) {
+                        setCount(target);
+                        clearInterval(timer);
+                    } else {
+                        setCount(Math.floor(start));
+                    }
+                }
+            }["AnimatedCounter.useEffect.timer"], 16);
+            return ({
+                "AnimatedCounter.useEffect": ()=>clearInterval(timer)
+            })["AnimatedCounter.useEffect"];
+        }
+    }["AnimatedCounter.useEffect"], [
+        target,
+        duration
+    ]);
+    const formatted = decimals > 0 ? count.toFixed(decimals) : count.toLocaleString('en-IN');
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+        className: "tabular-nums font-bold",
+        children: [
+            prefix,
+            formatted,
+            suffix
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/components/ui/AnimatedCounter.tsx",
+        lineNumber: 36,
+        columnNumber: 9
+    }, this);
+}
+_s(AnimatedCounter, "/xL7qdScToREtqzbt5GZ1kHtYjQ=");
+_c = AnimatedCounter;
+var _c;
+__turbopack_context__.k.register(_c, "AnimatedCounter");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/services/reportGenerator.ts [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "generateImpactReport",
+    ()=>generateImpactReport
+]);
+// PDF Report Generator using jsPDF
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jspdf$2f$dist$2f$jspdf$2e$es$2e$min$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/jspdf/dist/jspdf.es.min.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jspdf$2d$autotable$2f$dist$2f$jspdf$2e$plugin$2e$autotable$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/jspdf-autotable/dist/jspdf.plugin.autotable.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$mockData$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/data/mockData.ts [app-client] (ecmascript)");
+;
+;
+;
+function generateImpactReport(data) {
+    const doc = new __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jspdf$2f$dist$2f$jspdf$2e$es$2e$min$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"]();
+    const pageWidth = doc.internal.pageSize.getWidth();
+    // Brand Colors (Typed as Tuples for jsPDF)
+    const primaryBlue = [
+        59,
+        130,
+        246
+    ]; // #3b82f6
+    const darkSlate = [
+        15,
+        23,
+        42
+    ]; // #0f172a
+    const lightSlate = [
+        100,
+        116,
+        139
+    ]; // #64748b
+    const muttedSlate = [
+        148,
+        163,
+        184
+    ]; // #94a3b8
+    const surfaceGray = [
+        241,
+        245,
+        249
+    ]; // #f1f5f9
+    // Header (Light Surface with Blue Accents)
+    doc.setFillColor(...surfaceGray);
+    doc.rect(0, 0, pageWidth, 45, 'F');
+    doc.setDrawColor(...primaryBlue);
+    doc.setLineWidth(1.5);
+    doc.line(15, 40, pageWidth - 15, 40);
+    doc.setTextColor(...primaryBlue);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(24);
+    doc.text('SDG Nexus', 15, 22);
+    doc.setFontSize(10);
+    doc.setTextColor(...lightSlate);
+    doc.setFont('helvetica', 'normal');
+    doc.text('Impact Assessment & SDG Intelligence Report', 15, 30);
+    doc.setFontSize(8);
+    doc.text(`ID: NEX-${Math.random().toString(36).substr(2, 9).toUpperCase()}`, 15, 36);
+    // Org Info
+    doc.setTextColor(...darkSlate);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(14);
+    doc.text(data.organizationName, pageWidth - 15, 22, {
+        align: 'right'
+    });
+    doc.setFontSize(10);
+    doc.setTextColor(...primaryBlue);
+    doc.text(data.role.toUpperCase() + ' PORTFOLIO', pageWidth - 15, 30, {
+        align: 'right'
+    });
+    doc.setFontSize(8);
+    doc.setTextColor(...muttedSlate);
+    doc.setFont('helvetica', 'normal');
+    doc.text(`Generated: ${new Date().toLocaleDateString('en-IN', {
+        year: 'numeric',
+        month: 'long',
+        day: 'numeric'
+    })}`, pageWidth - 15, 36, {
+        align: 'right'
+    });
+    // Summary Section
+    let y = 60;
+    doc.setTextColor(...darkSlate);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(16);
+    doc.text('Executive Impact Summary', 15, y);
+    y += 10;
+    const summaryData = [
+        [
+            'Total Projects Managed',
+            data.projects.length.toString()
+        ],
+        [
+            'Total Lives Impacted',
+            data.totalBeneficiaries.toLocaleString()
+        ],
+        [
+            'Total Capital Allocated',
+            `₹${(data.totalBudget / 100000).toFixed(1)} Lakhs`
+        ],
+        [
+            'Total Capital Utilized',
+            `₹${(data.totalSpent / 100000).toFixed(1)} Lakhs`
+        ],
+        [
+            'Utilization Efficiency',
+            `${data.totalBudget > 0 ? (data.totalSpent / data.totalBudget * 100).toFixed(1) : 0}%`
+        ],
+        [
+            'Portfolio Health',
+            data.projects.every((p)=>p.status === 'completed' || p.status === 'active') ? 'OPTIMAL' : 'REQUIRES ATTENTION'
+        ]
+    ];
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jspdf$2d$autotable$2f$dist$2f$jspdf$2e$plugin$2e$autotable$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(doc, {
+        startY: y,
+        head: [
+            [
+                'Strategic Metric',
+                'Certified Value'
+            ]
+        ],
+        body: summaryData,
+        theme: 'striped',
+        headStyles: {
+            fillColor: primaryBlue,
+            textColor: [
+                255,
+                255,
+                255
+            ],
+            fontSize: 10,
+            fontStyle: 'bold'
+        },
+        bodyStyles: {
+            textColor: darkSlate,
+            fontSize: 10
+        },
+        alternateRowStyles: {
+            fillColor: [
+                250,
+                250,
+                250
+            ]
+        },
+        styles: {
+            cellPadding: 5
+        },
+        columnStyles: {
+            0: {
+                fontStyle: 'bold',
+                cellWidth: 100
+            }
+        },
+        margin: {
+            left: 15,
+            right: 15
+        }
+    });
+    // Impact Score Breakdown
+    y = doc.lastAutoTable.finalY + 18;
+    if (data.impactScore) {
+        if (y > 240) {
+            doc.addPage();
+            y = 20;
+        }
+        doc.setTextColor(...darkSlate);
+        doc.setFont('helvetica', 'bold');
+        doc.setFontSize(16);
+        doc.text('Verified Impact Performance', 15, y);
+        y += 10;
+        const scoreData = [
+            [
+                'Overall Final Score',
+                `${data.impactScore.overall_score} / 1000`
+            ],
+            [
+                'Beneficiary Reach Scale',
+                `${data.impactScore.beneficiary_scale}%`
+            ],
+            [
+                'Outcome Verification',
+                `${data.impactScore.outcome_score}%`
+            ],
+            [
+                'Geographic Need Index',
+                `${data.impactScore.geographic_need}%`
+            ],
+            [
+                'Capital Deployment Efficiency',
+                `${data.impactScore.funding_efficiency}%`
+            ],
+            [
+                'Data Integrity & Transparency',
+                `${data.impactScore.verification_score}%`
+            ]
+        ];
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jspdf$2d$autotable$2f$dist$2f$jspdf$2e$plugin$2e$autotable$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(doc, {
+            startY: y,
+            head: [
+                [
+                    'Performance Component',
+                    'Assessment Score'
+                ]
+            ],
+            body: scoreData,
+            theme: 'grid',
+            headStyles: {
+                fillColor: darkSlate,
+                textColor: [
+                    255,
+                    255,
+                    255
+                ],
+                fontSize: 10
+            },
+            bodyStyles: {
+                textColor: darkSlate,
+                fontSize: 9
+            },
+            styles: {
+                cellPadding: 5
+            },
+            columnStyles: {
+                0: {
+                    fontStyle: 'bold',
+                    cellWidth: 110
+                }
+            },
+            margin: {
+                left: 15,
+                right: 15
+            }
+        });
+    }
+    // SDG Breakdown
+    y = doc.lastAutoTable.finalY + 18;
+    if (y > 230) {
+        doc.addPage();
+        y = 20;
+    }
+    doc.setTextColor(...darkSlate);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(16);
+    doc.text('SDG Multi-Stakeholder Alignment', 15, y);
+    y += 10;
+    const allSDGs = new Set();
+    data.projects.forEach((p)=>p.sdg_tags.forEach((s)=>allSDGs.add(s)));
+    const sdgRows = Array.from(allSDGs).sort((a, b)=>a - b).map((sdg)=>{
+        const info = __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$mockData$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SDG_INFO"].find((s)=>s.id === sdg);
+        const projectCount = data.projects.filter((p)=>p.sdg_tags.includes(sdg)).length;
+        return [
+            `SDG ${sdg}: ${info?.name || ''}`,
+            projectCount.toString(),
+            `${(projectCount / data.projects.length * 100).toFixed(0)}%`
+        ];
+    });
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jspdf$2d$autotable$2f$dist$2f$jspdf$2e$plugin$2e$autotable$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(doc, {
+        startY: y,
+        head: [
+            [
+                'Sustainable Development Goal',
+                'Project Count',
+                'Portfolio Weight'
+            ]
+        ],
+        body: sdgRows,
+        theme: 'striped',
+        headStyles: {
+            fillColor: primaryBlue,
+            textColor: [
+                255,
+                255,
+                255
+            ],
+            fontSize: 10
+        },
+        styles: {
+            fontSize: 9,
+            cellPadding: 5
+        },
+        columnStyles: {
+            0: {
+                fontStyle: 'bold',
+                cellWidth: 110
+            }
+        },
+        margin: {
+            left: 15,
+            right: 15
+        }
+    });
+    // Project Details (Large Table)
+    doc.addPage();
+    y = 20;
+    doc.setTextColor(...primaryBlue);
+    doc.setFont('helvetica', 'bold');
+    doc.setFontSize(18);
+    doc.text('Detailed Project Inventory', 15, y);
+    y += 12;
+    const projectRows = data.projects.map((p)=>[
+            p.title,
+            p.sdg_tags.map((s)=>`SDG ${s}`).join(', '),
+            p.beneficiary_count.toLocaleString(),
+            `₹${(p.budget / 100000).toFixed(1)}L`,
+            `${p.budget > 0 ? (p.spent / p.budget * 100).toFixed(0) : 0}%`,
+            p.status.toUpperCase()
+        ]);
+    (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$jspdf$2d$autotable$2f$dist$2f$jspdf$2e$plugin$2e$autotable$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"])(doc, {
+        startY: y,
+        head: [
+            [
+                'Project Name',
+                'Target SDGs',
+                'Reach',
+                'Budget',
+                'Utilization',
+                'Status'
+            ]
+        ],
+        body: projectRows,
+        theme: 'grid',
+        headStyles: {
+            fillColor: darkSlate,
+            textColor: [
+                255,
+                255,
+                255
+            ],
+            fontSize: 8
+        },
+        styles: {
+            fontSize: 8,
+            cellPadding: 4
+        },
+        columnStyles: {
+            0: {
+                cellWidth: 50,
+                fontStyle: 'bold'
+            }
+        },
+        margin: {
+            left: 15,
+            right: 15
+        }
+    });
+    // Footer & Certification
+    const pageCount = doc.getNumberOfPages();
+    for(let i = 1; i <= pageCount; i++){
+        doc.setPage(i);
+        doc.setFontSize(8);
+        doc.setTextColor(...muttedSlate);
+        // Horizontal footer line
+        doc.setDrawColor(...surfaceGray);
+        doc.setLineWidth(0.5);
+        doc.line(15, doc.internal.pageSize.getHeight() - 15, pageWidth - 15, doc.internal.pageSize.getHeight() - 15);
+        doc.text(`SDG Nexus IMPACT_CERTIFICATE_V1 • Page ${i} of ${pageCount}`, 15, doc.internal.pageSize.getHeight() - 10);
+        doc.text('© 2026 SDG Nexus Blockchain Ledger - Verified Immutable Record', pageWidth - 15, doc.internal.pageSize.getHeight() - 10, {
+            align: 'right'
+        });
+    }
+    doc.save(`Impact_Report_${data.organizationName.replace(/\s+/g, '_')}_${new Date().getTime()}.pdf`);
+}
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+"[project]/src/app/dashboard/corporate/page.tsx [app-client] (ecmascript)", ((__turbopack_context__) => {
+"use strict";
+
+__turbopack_context__.s([
+    "default",
+    ()=>CorporateDashboard
+]);
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/jsx-dev-runtime.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/next/dist/compiled/react/index.js [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/node_modules/framer-motion/dist/es/render/components/motion/proxy.mjs [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$mockData$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/data/mockData.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$DataContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/lib/DataContext.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$matching$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/matching.ts [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$AnimatedCounter$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/components/ui/AnimatedCounter.tsx [app-client] (ecmascript)");
+var __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$reportGenerator$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__ = __turbopack_context__.i("[project]/src/services/reportGenerator.ts [app-client] (ecmascript)");
+;
+var _s = __turbopack_context__.k.signature();
+'use client';
+;
+;
+;
+;
+;
+;
+;
+const fadeIn = (d)=>({
+        initial: {
+            opacity: 0,
+            y: 20
+        },
+        animate: {
+            opacity: 1,
+            y: 0
+        },
+        transition: {
+            duration: 0.5,
+            delay: d
+        }
+    });
+function CorporateDashboard() {
+    _s();
+    const { organizations, projects, donations } = (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$DataContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useData"])();
+    const [sdgFilter, setSdgFilter] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])(null);
+    const [stateFilter, setStateFilter] = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useState"])('');
+    const corporateSDGs = [
+        3,
+        4,
+        6,
+        7,
+        11
+    ];
+    const totalCSRSpend = donations.reduce((s, d)=>s + d.amount, 0);
+    const projectsFunded = new Set(donations.map((d)=>d.project_id)).size;
+    const sdgsSupported = new Set(projects.flatMap((p)=>p.sdg_tags)).size;
+    const matches = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$index$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useMemo"])({
+        "CorporateDashboard.useMemo[matches]": ()=>{
+            return (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$matching$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["findMatches"])(organizations, {
+                sdg_focus: sdgFilter ? [
+                    sdgFilter
+                ] : undefined,
+                state: stateFilter || undefined
+            }, corporateSDGs);
+        }
+    }["CorporateDashboard.useMemo[matches]"], [
+        sdgFilter,
+        stateFilter,
+        organizations
+    ]);
+    const handleGenerateReport = ()=>{
+        (0, __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$services$2f$reportGenerator$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["generateImpactReport"])({
+            organizationName: 'TechServe India CSR',
+            role: 'corporate',
+            projects: projects.slice(0, 6),
+            totalBeneficiaries: projects.reduce((s, p)=>s + p.beneficiary_count, 0),
+            totalBudget: projects.reduce((s, p)=>s + p.budget, 0),
+            totalSpent: projects.reduce((s, p)=>s + p.spent, 0)
+        });
+    };
+    return /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+        className: "space-y-6",
+        children: [
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                ...fadeIn(0),
+                className: "flex items-center justify-between",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
+                                className: "text-2xl font-bold text-slate-900",
+                                children: "CSR Dashboard"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                lineNumber: 49,
+                                columnNumber: 21
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-sm text-slate-500 mt-1",
+                                children: "TechServe India CSR • Corporate Dashboard"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                lineNumber: 50,
+                                columnNumber: 21
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                        lineNumber: 48,
+                        columnNumber: 17
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
+                        onClick: handleGenerateReport,
+                        className: "btn-neon text-sm",
+                        children: "📄 Generate CSR Report"
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                        lineNumber: 52,
+                        columnNumber: 17
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                lineNumber: 47,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                className: "grid grid-cols-1 md:grid-cols-4 gap-4",
+                children: [
+                    {
+                        label: 'Total CSR Spend',
+                        value: 45,
+                        icon: '💰',
+                        color: '#3b82f6',
+                        prefix: '₹',
+                        suffix: ' Lakh'
+                    },
+                    {
+                        label: 'Projects Funded',
+                        value: projectsFunded,
+                        icon: '📁',
+                        color: '#10b981'
+                    },
+                    {
+                        label: 'SDGs Impacted',
+                        value: sdgsSupported,
+                        icon: '🎯',
+                        color: '#8b5cf6'
+                    },
+                    {
+                        label: 'Lives Impacted',
+                        value: 80000,
+                        icon: '👥',
+                        color: '#f59e0b'
+                    }
+                ].map((stat, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                        ...fadeIn(0.05 * (i + 1)),
+                        className: "glass-card p-5",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex items-center justify-between mb-3",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-2xl",
+                                        children: stat.icon
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                        lineNumber: 67,
+                                        columnNumber: 29
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-xs px-2 py-1 rounded-lg",
+                                        style: {
+                                            background: stat.color + '15',
+                                            color: stat.color
+                                        },
+                                        children: stat.label
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                        lineNumber: 68,
+                                        columnNumber: 29
+                                    }, this)
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                lineNumber: 66,
+                                columnNumber: 25
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "text-3xl font-bold text-slate-900",
+                                children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$AnimatedCounter$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["default"], {
+                                    target: stat.value,
+                                    prefix: stat.prefix,
+                                    suffix: stat.suffix
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                    lineNumber: 71,
+                                    columnNumber: 29
+                                }, this)
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                lineNumber: 70,
+                                columnNumber: 25
+                            }, this)
+                        ]
+                    }, i, true, {
+                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                        lineNumber: 65,
+                        columnNumber: 21
+                    }, this))
+            }, void 0, false, {
+                fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                lineNumber: 58,
+                columnNumber: 13
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                ...fadeIn(0.3),
+                className: "glass-card p-6",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex items-center justify-between mb-4",
+                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                            children: [
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                    className: "text-lg font-semibold text-slate-900",
+                                    children: "🤝 Smart Partner Matching"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                    lineNumber: 81,
+                                    columnNumber: 25
+                                }, this),
+                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                    className: "text-xs text-slate-500 mt-1",
+                                    children: "AI-powered NGO recommendations based on your CSR focus areas"
+                                }, void 0, false, {
+                                    fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                    lineNumber: 82,
+                                    columnNumber: 25
+                                }, this)
+                            ]
+                        }, void 0, true, {
+                            fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                            lineNumber: 80,
+                            columnNumber: 21
+                        }, this)
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                        lineNumber: 79,
+                        columnNumber: 17
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex flex-wrap gap-3 mb-5",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
+                                value: sdgFilter || '',
+                                onChange: (e)=>setSdgFilter(e.target.value ? parseInt(e.target.value) : null),
+                                className: "input-dark w-auto text-sm py-2",
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                        value: "",
+                                        children: "All SDGs"
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                        lineNumber: 90,
+                                        columnNumber: 25
+                                    }, this),
+                                    __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$mockData$2e$ts__$5b$app$2d$client$5d$__$28$ecmascript$29$__["SDG_INFO"].map((s)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
+                                            value: s.id,
+                                            children: [
+                                                "SDG ",
+                                                s.id,
+                                                ": ",
+                                                s.name
+                                            ]
+                                        }, s.id, true, {
+                                            fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                            lineNumber: 91,
+                                            columnNumber: 44
+                                        }, this))
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                lineNumber: 88,
+                                columnNumber: 21
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("input", {
+                                type: "text",
+                                value: stateFilter,
+                                onChange: (e)=>setStateFilter(e.target.value),
+                                className: "input-dark w-auto text-sm py-2",
+                                placeholder: "Filter by state..."
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                lineNumber: 93,
+                                columnNumber: 21
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                        lineNumber: 87,
+                        columnNumber: 17
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "grid md:grid-cols-2 gap-4",
+                        children: matches.map((match, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$client$5d$__$28$ecmascript$29$__["motion"].div, {
+                                initial: {
+                                    opacity: 0,
+                                    y: 10
+                                },
+                                animate: {
+                                    opacity: 1,
+                                    y: 0
+                                },
+                                transition: {
+                                    delay: i * 0.08
+                                },
+                                className: "p-4 rounded-xl transition-all hover:bg-slate-100",
+                                style: {
+                                    background: '#f8fafc',
+                                    border: '1px solid rgba(255,255,255,0.06)'
+                                },
+                                children: [
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex items-center justify-between mb-3",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "flex items-center gap-3",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "w-10 h-10 rounded-xl flex items-center justify-center text-lg",
+                                                        style: {
+                                                            background: '#3b82f6'
+                                                        },
+                                                        children: match.ngo.name.charAt(0)
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                                        lineNumber: 109,
+                                                        columnNumber: 37
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        children: [
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                className: "text-sm font-semibold text-slate-900",
+                                                                children: match.ngo.name
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                                                lineNumber: 114,
+                                                                columnNumber: 41
+                                                            }, this),
+                                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                                className: "text-xs text-slate-500",
+                                                                children: match.ngo.location.state
+                                                            }, void 0, false, {
+                                                                fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                                                lineNumber: 115,
+                                                                columnNumber: 41
+                                                            }, this)
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                                        lineNumber: 113,
+                                                        columnNumber: 37
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                                lineNumber: 108,
+                                                columnNumber: 33
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "text-right",
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "text-lg font-bold text-blue-500",
+                                                        children: [
+                                                            match.match_score,
+                                                            "%"
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                                        lineNumber: 119,
+                                                        columnNumber: 37
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "text-[10px] text-slate-500",
+                                                        children: "Match"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                                        lineNumber: 120,
+                                                        columnNumber: 37
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                                lineNumber: 118,
+                                                columnNumber: 33
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                        lineNumber: 107,
+                                        columnNumber: 29
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "flex flex-wrap gap-1.5 mb-3",
+                                        children: match.ngo.sdg_focus.map((s)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: `sdg-${s} text-[10px] px-2 py-0.5 rounded-md`,
+                                                children: [
+                                                    "SDG ",
+                                                    s
+                                                ]
+                                            }, s, true, {
+                                                fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                                lineNumber: 126,
+                                                columnNumber: 37
+                                            }, this))
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                        lineNumber: 124,
+                                        columnNumber: 29
+                                    }, this),
+                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "grid grid-cols-3 gap-2 text-center",
+                                        children: [
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "p-2 rounded-lg",
+                                                style: {
+                                                    background: '#f8fafc'
+                                                },
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                        className: "text-xs font-bold text-slate-900",
+                                                        children: match.ngo.impact_score
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                                        lineNumber: 132,
+                                                        columnNumber: 37
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                        className: "text-[10px] text-slate-500",
+                                                        children: "Impact"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                                        lineNumber: 133,
+                                                        columnNumber: 37
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                                lineNumber: 131,
+                                                columnNumber: 33
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "p-2 rounded-lg",
+                                                style: {
+                                                    background: '#f8fafc'
+                                                },
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                        className: "text-xs font-bold text-slate-900",
+                                                        children: [
+                                                            "₹",
+                                                            (match.ngo.funding_need / 100000).toFixed(0),
+                                                            "L"
+                                                        ]
+                                                    }, void 0, true, {
+                                                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                                        lineNumber: 136,
+                                                        columnNumber: 37
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                        className: "text-[10px] text-slate-500",
+                                                        children: "Need"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                                        lineNumber: 137,
+                                                        columnNumber: 37
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                                lineNumber: 135,
+                                                columnNumber: 33
+                                            }, this),
+                                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                className: "p-2 rounded-lg",
+                                                style: {
+                                                    background: '#f8fafc'
+                                                },
+                                                children: [
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                        className: "text-xs font-bold text-slate-900",
+                                                        children: match.ngo.beneficiaries.toLocaleString()
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                                        lineNumber: 140,
+                                                        columnNumber: 37
+                                                    }, this),
+                                                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                        className: "text-[10px] text-slate-500",
+                                                        children: "Reach"
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                                        lineNumber: 141,
+                                                        columnNumber: 37
+                                                    }, this)
+                                                ]
+                                            }, void 0, true, {
+                                                fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                                lineNumber: 139,
+                                                columnNumber: 33
+                                            }, this)
+                                        ]
+                                    }, void 0, true, {
+                                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                        lineNumber: 130,
+                                        columnNumber: 29
+                                    }, this),
+                                    match.reasons.length > 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "mt-3 text-xs text-slate-500",
+                                        children: match.reasons.map((r, ri)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                className: "inline-block mr-2",
+                                                children: [
+                                                    "✓ ",
+                                                    r
+                                                ]
+                                            }, ri, true, {
+                                                fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                                lineNumber: 148,
+                                                columnNumber: 41
+                                            }, this))
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                        lineNumber: 146,
+                                        columnNumber: 33
+                                    }, this),
+                                    match.ngo.verified && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                        className: "mt-2 flex items-center gap-1",
+                                        children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$compiled$2f$react$2f$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$client$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "text-[10px] px-2 py-0.5 rounded-md",
+                                            style: {
+                                                background: 'rgba(16,185,129,0.1)',
+                                                color: '#10b981'
+                                            },
+                                            children: "✓ Verified"
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                            lineNumber: 155,
+                                            columnNumber: 37
+                                        }, this)
+                                    }, void 0, false, {
+                                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                        lineNumber: 154,
+                                        columnNumber: 33
+                                    }, this)
+                                ]
+                            }, match.ngo.id, true, {
+                                fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                                lineNumber: 100,
+                                columnNumber: 25
+                            }, this))
+                    }, void 0, false, {
+                        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                        lineNumber: 98,
+                        columnNumber: 17
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+                lineNumber: 78,
+                columnNumber: 13
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/app/dashboard/corporate/page.tsx",
+        lineNumber: 46,
+        columnNumber: 9
+    }, this);
+}
+_s(CorporateDashboard, "bR2D9YO/coeW2GLSPaQEeD0k5Ho=", false, function() {
+    return [
+        __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$lib$2f$DataContext$2e$tsx__$5b$app$2d$client$5d$__$28$ecmascript$29$__["useData"]
+    ];
+});
+_c = CorporateDashboard;
+var _c;
+__turbopack_context__.k.register(_c, "CorporateDashboard");
+if (typeof globalThis.$RefreshHelpers$ === 'object' && globalThis.$RefreshHelpers !== null) {
+    __turbopack_context__.k.registerExports(__turbopack_context__.m, globalThis.$RefreshHelpers$);
+}
+}),
+]);
+
+//# sourceMappingURL=src_ab13cfb0._.js.map

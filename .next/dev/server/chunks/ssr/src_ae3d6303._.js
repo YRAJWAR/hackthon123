@@ -101,7 +101,7 @@ function DonorDashboard() {
                 ...fadeIn(0),
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                        className: "text-2xl font-bold text-white",
+                        className: "text-2xl font-bold text-slate-900",
                         children: "Donor Dashboard"
                     }, void 0, false, {
                         fileName: "[project]/src/app/dashboard/donor/page.tsx",
@@ -109,7 +109,7 @@ function DonorDashboard() {
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-sm text-gray-500 mt-1",
+                        className: "text-sm text-slate-500 mt-1",
                         children: "Track your giving impact and discover new projects"
                     }, void 0, false, {
                         fileName: "[project]/src/app/dashboard/donor/page.tsx",
@@ -137,7 +137,7 @@ function DonorDashboard() {
                         label: 'Projects Supported',
                         value: myDonations.length,
                         icon: '📁',
-                        color: '#06b6d4'
+                        color: '#3b82f6'
                     },
                     {
                         label: 'SDGs Supported',
@@ -185,7 +185,7 @@ function DonorDashboard() {
                                 columnNumber: 25
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "text-3xl font-bold text-white",
+                                className: "text-3xl font-bold text-slate-900",
                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$components$2f$ui$2f$AnimatedCounter$2e$tsx__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["default"], {
                                     target: stat.value,
                                     prefix: stat.prefix,
@@ -216,7 +216,7 @@ function DonorDashboard() {
                 className: "glass-card p-6",
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                        className: "text-lg font-semibold text-white mb-4",
+                        className: "text-lg font-semibold text-slate-900 mb-4",
                         children: "Your Impact Breakdown"
                     }, void 0, false, {
                         fileName: "[project]/src/app/dashboard/donor/page.tsx",
@@ -239,7 +239,7 @@ function DonorDashboard() {
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                className: "text-cyan-400 font-medium",
+                                                className: "text-blue-500 font-medium",
                                                 children: [
                                                     "₹",
                                                     donation.amount.toLocaleString()
@@ -256,7 +256,7 @@ function DonorDashboard() {
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "h-2.5 bg-white/5 rounded-full overflow-hidden",
+                                        className: "h-2.5 bg-slate-100 rounded-full overflow-hidden",
                                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
                                             initial: {
                                                 width: 0
@@ -270,7 +270,7 @@ function DonorDashboard() {
                                             },
                                             className: "h-full rounded-full",
                                             style: {
-                                                background: `linear-gradient(90deg, ${__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$mockData$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SDG_INFO"].find((s)=>s.id === donation.sdg_tags[0])?.color || '#06b6d4'}, ${__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$mockData$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SDG_INFO"].find((s)=>s.id === (donation.sdg_tags[1] || donation.sdg_tags[0]))?.color || '#8b5cf6'})`
+                                                background: `linear-gradient(90deg, ${__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$mockData$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SDG_INFO"].find((s)=>s.id === donation.sdg_tags[0])?.color || '#3b82f6'}, ${__TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$mockData$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SDG_INFO"].find((s)=>s.id === (donation.sdg_tags[1] || donation.sdg_tags[0]))?.color || '#8b5cf6'})`
                                             }
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/dashboard/donor/page.tsx",
@@ -324,7 +324,7 @@ function DonorDashboard() {
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                         className: "flex items-center justify-between mb-4",
                         children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
-                            className: "text-lg font-semibold text-white",
+                            className: "text-lg font-semibold text-slate-900",
                             children: "Browse Projects"
                         }, void 0, false, {
                             fileName: "[project]/src/app/dashboard/donor/page.tsx",
@@ -343,8 +343,8 @@ function DonorDashboard() {
                                 onClick: ()=>setSelectedSDG(null),
                                 className: "px-3 py-1.5 rounded-lg text-xs font-medium transition-all",
                                 style: {
-                                    background: !selectedSDG ? 'rgba(6,182,212,0.15)' : 'rgba(255,255,255,0.03)',
-                                    color: !selectedSDG ? '#06b6d4' : '#94a3b8',
+                                    background: !selectedSDG ? 'rgba(6,182,212,0.15)' : '#f8fafc',
+                                    color: !selectedSDG ? '#3b82f6' : '#94a3b8',
                                     border: `1px solid ${!selectedSDG ? 'rgba(6,182,212,0.3)' : 'rgba(255,255,255,0.06)'}`
                                 },
                                 children: "All"
@@ -357,7 +357,7 @@ function DonorDashboard() {
                                     onClick: ()=>setSelectedSDG(sdg.id),
                                     className: "px-3 py-1.5 rounded-lg text-xs font-medium transition-all",
                                     style: {
-                                        background: selectedSDG === sdg.id ? sdg.color + '20' : 'rgba(255,255,255,0.03)',
+                                        background: selectedSDG === sdg.id ? sdg.color + '20' : '#f8fafc',
                                         color: selectedSDG === sdg.id ? sdg.color : '#94a3b8',
                                         border: `1px solid ${selectedSDG === sdg.id ? sdg.color + '40' : 'rgba(255,255,255,0.06)'}`
                                     },
@@ -393,12 +393,12 @@ function DonorDashboard() {
                                 },
                                 className: "p-4 rounded-xl",
                                 style: {
-                                    background: 'rgba(255,255,255,0.02)',
+                                    background: '#f8fafc',
                                     border: '1px solid rgba(255,255,255,0.06)'
                                 },
                                 children: [
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                        className: "text-sm font-semibold text-white mb-1",
+                                        className: "text-sm font-semibold text-slate-900 mb-1",
                                         children: project.title
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/dashboard/donor/page.tsx",
@@ -406,7 +406,7 @@ function DonorDashboard() {
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                                        className: "text-xs text-gray-500 mb-3 line-clamp-2",
+                                        className: "text-xs text-slate-500 mb-3 line-clamp-2",
                                         children: project.description
                                     }, void 0, false, {
                                         fileName: "[project]/src/app/dashboard/donor/page.tsx",
@@ -432,7 +432,7 @@ function DonorDashboard() {
                                         columnNumber: 29
                                     }, this),
                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                        className: "flex items-center justify-between text-xs text-gray-400 mb-3",
+                                        className: "flex items-center justify-between text-xs text-slate-500 mb-3",
                                         children: [
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                                 children: [
@@ -467,7 +467,7 @@ function DonorDashboard() {
                                                 className: "flex justify-between text-xs mb-1",
                                                 children: [
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-gray-500",
+                                                        className: "text-slate-500",
                                                         children: [
                                                             "₹",
                                                             (project.spent / 100000).toFixed(0),
@@ -479,7 +479,7 @@ function DonorDashboard() {
                                                         columnNumber: 37
                                                     }, this),
                                                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
-                                                        className: "text-gray-500",
+                                                        className: "text-slate-500",
                                                         children: [
                                                             "₹",
                                                             (project.budget / 100000).toFixed(0),
@@ -497,7 +497,7 @@ function DonorDashboard() {
                                                 columnNumber: 33
                                             }, this),
                                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                                className: "h-1.5 bg-white/5 rounded-full overflow-hidden",
+                                                className: "h-1.5 bg-slate-100 rounded-full overflow-hidden",
                                                 children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                                                     className: "h-full bg-emerald-500 rounded-full",
                                                     style: {
@@ -525,7 +525,7 @@ function DonorDashboard() {
                                         style: {
                                             background: 'rgba(6,182,212,0.1)',
                                             border: '1px solid rgba(6,182,212,0.2)',
-                                            color: '#06b6d4'
+                                            color: '#3b82f6'
                                         },
                                         children: "💝 Donate Now"
                                     }, void 0, false, {
@@ -566,7 +566,7 @@ function DonorDashboard() {
                     onClick: (e)=>e.stopPropagation(),
                     children: [
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                            className: "text-lg font-bold text-white mb-4",
+                            className: "text-lg font-bold text-slate-900 mb-4",
                             children: "Make a Donation"
                         }, void 0, false, {
                             fileName: "[project]/src/app/dashboard/donor/page.tsx",
@@ -593,7 +593,7 @@ function DonorDashboard() {
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                             onClick: ()=>setShowDonateModal(null),
-                            className: "w-full mt-2 py-2 text-xs text-gray-500 hover:text-gray-300 transition",
+                            className: "w-full mt-2 py-2 text-xs text-slate-500 hover:text-gray-300 transition",
                             children: "Cancel"
                         }, void 0, false, {
                             fileName: "[project]/src/app/dashboard/donor/page.tsx",

@@ -27,7 +27,6 @@ function LeaderboardPage() {
         '🥈',
         '🥉'
     ];
-    // Compute badges
     const badges = (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["useMemo"])(()=>{
         const sorted = [
             ...organizations
@@ -90,7 +89,7 @@ function LeaderboardPage() {
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
                 initial: {
                     opacity: 0,
-                    y: 20
+                    y: 12
                 },
                 animate: {
                     opacity: 1,
@@ -98,31 +97,37 @@ function LeaderboardPage() {
                 },
                 children: [
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h1", {
-                        className: "text-2xl font-bold text-white",
+                        className: "text-2xl font-bold",
+                        style: {
+                            color: '#0f172a'
+                        },
                         children: "🏆 SDG Impact Leaderboard"
                     }, void 0, false, {
                         fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
-                        lineNumber: 54,
+                        lineNumber: 53,
                         columnNumber: 17
                     }, this),
                     /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
-                        className: "text-sm text-gray-500 mt-1",
+                        className: "text-sm mt-1",
+                        style: {
+                            color: '#64748b'
+                        },
                         children: "Top SDG contributors ranked by impact score with badges and filters"
                     }, void 0, false, {
                         fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
-                        lineNumber: 55,
+                        lineNumber: 54,
                         columnNumber: 17
                     }, this)
                 ]
             }, void 0, true, {
                 fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
-                lineNumber: 53,
+                lineNumber: 52,
                 columnNumber: 13
             }, this),
             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
                 initial: {
                     opacity: 0,
-                    y: 20
+                    y: 12
                 },
                 animate: {
                     opacity: 1,
@@ -138,11 +143,14 @@ function LeaderboardPage() {
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                    className: "text-xs text-gray-500 mb-1 block",
+                                    className: "text-xs font-medium mb-1 block",
+                                    style: {
+                                        color: '#64748b'
+                                    },
                                     children: "Sort By"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
-                                    lineNumber: 62,
+                                    lineNumber: 61,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
@@ -151,7 +159,7 @@ function LeaderboardPage() {
                                         {
                                             key: 'impact',
                                             label: '🎯 Impact Score',
-                                            color: '#06b6d4'
+                                            color: '#3b82f6'
                                         },
                                         {
                                             key: 'efficiency',
@@ -170,37 +178,40 @@ function LeaderboardPage() {
                                         }
                                     ].map((opt)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("button", {
                                             onClick: ()=>setSortBy(opt.key),
-                                            className: "px-3 py-1.5 rounded-lg text-xs font-medium transition-all",
+                                            className: "px-3 py-1.5 rounded-lg text-xs font-medium transition-all cursor-pointer",
                                             style: {
-                                                background: sortBy === opt.key ? opt.color + '20' : 'rgba(255,255,255,0.03)',
+                                                background: sortBy === opt.key ? opt.color + '15' : '#f8fafc',
                                                 color: sortBy === opt.key ? opt.color : '#94a3b8',
-                                                border: `1px solid ${sortBy === opt.key ? opt.color + '40' : 'rgba(255,255,255,0.06)'}`
+                                                border: `1.5px solid ${sortBy === opt.key ? opt.color + '40' : '#e2e8f0'}`
                                             },
                                             children: opt.label
                                         }, opt.key, false, {
                                             fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
-                                            lineNumber: 70,
+                                            lineNumber: 69,
                                             columnNumber: 33
                                         }, this))
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
-                                    lineNumber: 63,
+                                    lineNumber: 62,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
-                            lineNumber: 61,
+                            lineNumber: 60,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                    className: "text-xs text-gray-500 mb-1 block",
+                                    className: "text-xs font-medium mb-1 block",
+                                    style: {
+                                        color: '#64748b'
+                                    },
                                     children: "SDG Filter"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
-                                    lineNumber: 83,
+                                    lineNumber: 82,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -213,7 +224,7 @@ function LeaderboardPage() {
                                             children: "All SDGs"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
-                                            lineNumber: 86,
+                                            lineNumber: 85,
                                             columnNumber: 29
                                         }, this),
                                         __TURBOPACK__imported__module__$5b$project$5d2f$src$2f$data$2f$mockData$2e$ts__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["SDG_INFO"].map((s)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -227,29 +238,32 @@ function LeaderboardPage() {
                                                 ]
                                             }, s.id, true, {
                                                 fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
-                                                lineNumber: 87,
+                                                lineNumber: 86,
                                                 columnNumber: 48
                                             }, this))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
-                                    lineNumber: 84,
+                                    lineNumber: 83,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
-                            lineNumber: 82,
+                            lineNumber: 81,
                             columnNumber: 21
                         }, this),
                         /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
                             children: [
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("label", {
-                                    className: "text-xs text-gray-500 mb-1 block",
+                                    className: "text-xs font-medium mb-1 block",
+                                    style: {
+                                        color: '#64748b'
+                                    },
                                     children: "Region"
                                 }, void 0, false, {
                                     fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
-                                    lineNumber: 91,
+                                    lineNumber: 90,
                                     columnNumber: 25
                                 }, this),
                                 /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("select", {
@@ -262,7 +276,7 @@ function LeaderboardPage() {
                                             children: "All Regions"
                                         }, void 0, false, {
                                             fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
-                                            lineNumber: 94,
+                                            lineNumber: 93,
                                             columnNumber: 29
                                         }, this),
                                         uniqueStates.map((s)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("option", {
@@ -270,36 +284,36 @@ function LeaderboardPage() {
                                                 children: s
                                             }, s, false, {
                                                 fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
-                                                lineNumber: 95,
+                                                lineNumber: 94,
                                                 columnNumber: 52
                                             }, this))
                                     ]
                                 }, void 0, true, {
                                     fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
-                                    lineNumber: 92,
+                                    lineNumber: 91,
                                     columnNumber: 25
                                 }, this)
                             ]
                         }, void 0, true, {
                             fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
-                            lineNumber: 90,
+                            lineNumber: 89,
                             columnNumber: 21
                         }, this)
                     ]
                 }, void 0, true, {
                     fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
-                    lineNumber: 60,
+                    lineNumber: 59,
                     columnNumber: 17
                 }, this)
             }, void 0, false, {
                 fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
-                lineNumber: 59,
+                lineNumber: 58,
                 columnNumber: 13
             }, this),
             filtered.length >= 3 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
                 initial: {
                     opacity: 0,
-                    y: 20
+                    y: 12
                 },
                 animate: {
                     opacity: 1,
@@ -310,7 +324,11 @@ function LeaderboardPage() {
                 },
                 className: "grid grid-cols-3 gap-4",
                 children: filtered.slice(0, 3).map((ngo, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                        className: `glass-card p-5 text-center ${i === 0 ? 'glow-cyan' : ''}`,
+                        className: "glass-card p-5 text-center",
+                        style: i === 0 ? {
+                            border: '2px solid #3b82f6',
+                            boxShadow: '0 4px 16px rgba(59,130,246,0.1)'
+                        } : undefined,
                         children: [
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
                                 className: "text-3xl",
@@ -321,9 +339,9 @@ function LeaderboardPage() {
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
-                                className: "w-14 h-14 rounded-full mx-auto mt-3 flex items-center justify-center text-xl font-bold",
+                                className: "w-14 h-14 rounded-full mx-auto mt-3 flex items-center justify-center text-xl font-bold text-slate-900",
                                 style: {
-                                    background: i === 0 ? 'linear-gradient(135deg, #f59e0b, #f43f5e)' : i === 1 ? 'linear-gradient(135deg, #94a3b8, #64748b)' : 'linear-gradient(135deg, #b45309, #a16207)'
+                                    background: i === 0 ? 'linear-gradient(135deg, #f59e0b, #ef4444)' : i === 1 ? 'linear-gradient(135deg, #94a3b8, #64748b)' : 'linear-gradient(135deg, #b45309, #a16207)'
                                 },
                                 children: ngo.name.charAt(0)
                             }, void 0, false, {
@@ -332,10 +350,349 @@ function LeaderboardPage() {
                                 columnNumber: 29
                             }, this),
                             /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h3", {
-                                className: "text-sm font-bold text-white mt-3",
+                                className: "text-sm font-bold mt-3",
+                                style: {
+                                    color: '#0f172a'
+                                },
                                 children: ngo.name
                             }, void 0, false, {
                                 fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
                                 lineNumber: 116,
                                 columnNumber: 29
                             }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-xs",
+                                style: {
+                                    color: '#94a3b8'
+                                },
+                                children: ngo.location.state
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                lineNumber: 117,
+                                columnNumber: 29
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-2xl font-bold mt-2",
+                                style: {
+                                    color: i === 0 ? '#3b82f6' : i === 1 ? '#64748b' : '#b45309'
+                                },
+                                children: ngo.impact_score
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                lineNumber: 118,
+                                columnNumber: 29
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-[10px]",
+                                style: {
+                                    color: '#94a3b8'
+                                },
+                                children: "Impact Score"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                lineNumber: 122,
+                                columnNumber: 29
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex flex-wrap justify-center gap-1 mt-2",
+                                children: getBadges(ngo.id).map((b)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: "text-[9px] px-1.5 py-0.5 rounded-full",
+                                        style: {
+                                            background: '#eff6ff',
+                                            color: '#3b82f6',
+                                            border: '1px solid #bfdbfe'
+                                        },
+                                        children: b
+                                    }, b, false, {
+                                        fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                        lineNumber: 125,
+                                        columnNumber: 37
+                                    }, this))
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                lineNumber: 123,
+                                columnNumber: 29
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                className: "flex flex-wrap justify-center gap-1 mt-2",
+                                children: ngo.sdg_focus.map((s)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                        className: `sdg-${s} text-[9px] px-1.5 py-0.5 rounded`,
+                                        children: [
+                                            "SDG ",
+                                            s
+                                        ]
+                                    }, s, true, {
+                                        fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                        lineNumber: 133,
+                                        columnNumber: 37
+                                    }, this))
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                lineNumber: 131,
+                                columnNumber: 29
+                            }, this)
+                        ]
+                    }, ngo.id, true, {
+                        fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                        lineNumber: 105,
+                        columnNumber: 25
+                    }, this))
+            }, void 0, false, {
+                fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                lineNumber: 102,
+                columnNumber: 17
+            }, this),
+            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
+                initial: {
+                    opacity: 0,
+                    y: 12
+                },
+                animate: {
+                    opacity: 1,
+                    y: 0
+                },
+                transition: {
+                    delay: 0.2
+                },
+                className: "glass-card p-6",
+                children: [
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "flex items-center justify-between mb-4",
+                        children: [
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("h2", {
+                                className: "text-lg font-semibold",
+                                style: {
+                                    color: '#0f172a'
+                                },
+                                children: "All Organizations"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                lineNumber: 145,
+                                columnNumber: 21
+                            }, this),
+                            /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-xs",
+                                style: {
+                                    color: '#94a3b8'
+                                },
+                                children: [
+                                    filtered.length,
+                                    " organizations"
+                                ]
+                            }, void 0, true, {
+                                fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                lineNumber: 146,
+                                columnNumber: 21
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                        lineNumber: 144,
+                        columnNumber: 17
+                    }, this),
+                    /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                        className: "space-y-3",
+                        children: [
+                            filtered.map((ngo, i)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])(__TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$framer$2d$motion$2f$dist$2f$es$2f$render$2f$components$2f$motion$2f$proxy$2e$mjs__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["motion"].div, {
+                                    initial: {
+                                        opacity: 0,
+                                        x: -10
+                                    },
+                                    animate: {
+                                        opacity: 1,
+                                        x: 0
+                                    },
+                                    transition: {
+                                        delay: 0.03 * i
+                                    },
+                                    className: "flex items-center gap-4 p-4 rounded-xl transition-all",
+                                    style: {
+                                        background: '#f8fafc',
+                                        border: '1px solid #e2e8f0'
+                                    },
+                                    onMouseEnter: (e)=>{
+                                        e.currentTarget.style.background = '#f1f5f9';
+                                        e.currentTarget.style.borderColor = '#cbd5e1';
+                                    },
+                                    onMouseLeave: (e)=>{
+                                        e.currentTarget.style.background = '#f8fafc';
+                                        e.currentTarget.style.borderColor = '#e2e8f0';
+                                    },
+                                    children: [
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                            className: "text-lg font-bold w-8 text-center",
+                                            style: {
+                                                color: '#94a3b8'
+                                            },
+                                            children: i < 3 ? medals[i] : `#${i + 1}`
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                            lineNumber: 160,
+                                            columnNumber: 29
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "w-10 h-10 rounded-xl flex items-center justify-center text-lg font-bold text-slate-900",
+                                            style: {
+                                                background: '#3b82f6'
+                                            },
+                                            children: ngo.name.charAt(0)
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                            lineNumber: 163,
+                                            columnNumber: 29
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex-1 min-w-0",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "flex items-center gap-2",
+                                                    children: [
+                                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                            className: "text-sm font-semibold truncate",
+                                                            style: {
+                                                                color: '#0f172a'
+                                                            },
+                                                            children: ngo.name
+                                                        }, void 0, false, {
+                                                            fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                                            lineNumber: 169,
+                                                            columnNumber: 37
+                                                        }, this),
+                                                        getBadges(ngo.id).map((b)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                                className: "text-[8px] px-1.5 py-0.5 rounded-full whitespace-nowrap",
+                                                                style: {
+                                                                    background: b.includes('Top') ? '#eff6ff' : b.includes('Transparent') ? '#f5f3ff' : '#ecfdf5',
+                                                                    color: b.includes('Top') ? '#3b82f6' : b.includes('Transparent') ? '#8b5cf6' : '#10b981'
+                                                                },
+                                                                children: b
+                                                            }, b, false, {
+                                                                fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                                                lineNumber: 171,
+                                                                columnNumber: 41
+                                                            }, this))
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                                    lineNumber: 168,
+                                                    columnNumber: 33
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "text-xs",
+                                                    style: {
+                                                        color: '#94a3b8'
+                                                    },
+                                                    children: [
+                                                        ngo.location.state,
+                                                        " • ",
+                                                        ngo.projects_count,
+                                                        " projects • ",
+                                                        ngo.beneficiaries.toLocaleString(),
+                                                        " beneficiaries"
+                                                    ]
+                                                }, void 0, true, {
+                                                    fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                                    lineNumber: 180,
+                                                    columnNumber: 33
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                            lineNumber: 167,
+                                            columnNumber: 29
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "flex gap-1.5 flex-shrink-0",
+                                            children: ngo.sdg_focus.map((s)=>/*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("span", {
+                                                    className: `sdg-${s} text-[10px] px-1.5 py-0.5 rounded`,
+                                                    children: s
+                                                }, s, false, {
+                                                    fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                                    lineNumber: 184,
+                                                    columnNumber: 37
+                                                }, this))
+                                        }, void 0, false, {
+                                            fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                            lineNumber: 182,
+                                            columnNumber: 29
+                                        }, this),
+                                        /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                            className: "text-right ml-2 flex-shrink-0",
+                                            children: [
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                                    className: "text-lg font-bold",
+                                                    style: {
+                                                        color: '#3b82f6'
+                                                    },
+                                                    children: ngo.impact_score
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                                    lineNumber: 188,
+                                                    columnNumber: 33
+                                                }, this),
+                                                /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                    className: "w-20 h-1.5 rounded-full overflow-hidden mt-1",
+                                                    style: {
+                                                        background: '#e2e8f0'
+                                                    },
+                                                    children: /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("div", {
+                                                        className: "h-full rounded-full",
+                                                        style: {
+                                                            width: `${ngo.impact_score / 1000 * 100}%`,
+                                                            background: '#3b82f6'
+                                                        }
+                                                    }, void 0, false, {
+                                                        fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                                        lineNumber: 190,
+                                                        columnNumber: 37
+                                                    }, this)
+                                                }, void 0, false, {
+                                                    fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                                    lineNumber: 189,
+                                                    columnNumber: 33
+                                                }, this)
+                                            ]
+                                        }, void 0, true, {
+                                            fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                            lineNumber: 187,
+                                            columnNumber: 29
+                                        }, this)
+                                    ]
+                                }, ngo.id, true, {
+                                    fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                    lineNumber: 150,
+                                    columnNumber: 25
+                                }, this)),
+                            filtered.length === 0 && /*#__PURE__*/ (0, __TURBOPACK__imported__module__$5b$project$5d2f$node_modules$2f$next$2f$dist$2f$server$2f$route$2d$modules$2f$app$2d$page$2f$vendored$2f$ssr$2f$react$2d$jsx$2d$dev$2d$runtime$2e$js__$5b$app$2d$ssr$5d$__$28$ecmascript$29$__["jsxDEV"])("p", {
+                                className: "text-sm text-center py-8",
+                                style: {
+                                    color: '#94a3b8'
+                                },
+                                children: "No organizations match the selected filters"
+                            }, void 0, false, {
+                                fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                                lineNumber: 196,
+                                columnNumber: 25
+                            }, this)
+                        ]
+                    }, void 0, true, {
+                        fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                        lineNumber: 148,
+                        columnNumber: 17
+                    }, this)
+                ]
+            }, void 0, true, {
+                fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+                lineNumber: 142,
+                columnNumber: 13
+            }, this)
+        ]
+    }, void 0, true, {
+        fileName: "[project]/src/app/dashboard/leaderboard/page.tsx",
+        lineNumber: 51,
+        columnNumber: 9
+    }, this);
+}
+}),
+];
+
+//# sourceMappingURL=src_app_dashboard_leaderboard_page_tsx_dcc6434d._.js.map

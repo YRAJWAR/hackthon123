@@ -25,6 +25,11 @@ export interface DetailedScore {
     geographicNeedScore: number; // 0-150
     transparencyScore: number;   // 0-100
     finalScore: number;          // 0-1000
+    rawScaleValue: number;
+    rawOutcomeValue: number;
+    rawEfficiencyValue: number;
+    rawGeoValue: number;
+    rawTransparencyValue: number;
 }
 
 // Sector medians for normalization
@@ -112,7 +117,13 @@ export function calculateDetailedScore(input: ScoreInput): DetailedScore {
         (transparencyScore * 0.10)
     );
 
-    return { scaleScore, outcomeScore, efficiencyScore, geographicNeedScore, transparencyScore, finalScore };
+    const rawScaleValue = input.beneficiaryCount;
+    const rawOutcomeValue = input.outcomeMetricValue;
+    const rawEfficiencyValue = input.beneficiaryCount > 0 ? input.budgetUtilized / input.beneficiaryCount : 0;
+    const rawGeoValue = getPovertyScore(input.locationName);
+    const rawTransparencyValue = input.activitiesCount > 0 ? (input.verifiedActivities / input.activitiesCount) * 100 : 0;
+
+    return { scaleScore, outcomeScore, efficiencyScore, geographicNeedScore, transparencyScore, finalScore, rawScaleValue, rawOutcomeValue, rawEfficiencyValue, rawGeoValue, rawTransparencyValue };
 }
 
 export function calculateImpactScore(input: ScoreInput): number {

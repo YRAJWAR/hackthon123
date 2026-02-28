@@ -1,97 +1,91 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { recalculateOrgScore } from '@/services/impactScoringService';
+import { handleApiError } from '@/server/middleware/errorHandler';
+import { validateDonationCreate } from '@/server/validators';
+import { donationRepo, auditLogRepo } from '@/server/repositories';
+import { successResponse } from '@/server/utils';
 
 // ──────────────────────────────────────────────────────────────
 // POST /api/donations — Record a donation
-// Updates project budget_utilized and triggers score recalculation
 // ──────────────────────────────────────────────────────────────
-
-interface DonationInput {
-    project_id: string;
-    donor_id: string;
-    amount: number;
-}
+// Enterprise-grade:
+// ✓ Input validation
+// ✓ Transaction-safe (donation + budget_utilized update)
+// ✓ Score recalculation after funding change
+// ✓ Audit logging
+// ✓ Structured responses
+// ──────────────────────────────────────────────────────────────
 
 export async function POST(request: NextRequest) {
     try {
-        const body: DonationInput = await request.json();
+        const body = await request.json();
 
         // Validation
-        const errors: string[] = [];
-        if (!body.project_id) errors.push('project_id is required');
-        if (!body.donor_id) errors.push('donor_id is required');
-        if (!body.amount || body.amount <= 0) errors.push('amount must be positive');
-        if (errors.length > 0) {
-            return NextResponse.json({ error: 'Validation failed', details: errors }, { status: 400 });
+        const validation = validateDonationCreate(body);
+        if (!validation.success) {
+            const { AppError } = await import('@/server/middleware/errorHandler');
+            throw AppError.badRequest('Validation failed', validation.errors);
         }
+        const input = validation.data;
 
         let savedToDb = false;
 
         try {
-            const prismaModule = await import('@/lib/prisma');
-            const prisma = prismaModule.default;
-
-            // Verify project exists and get org ID
-            const project = await prisma.project.findUnique({
-                where: { id: body.project_id },
-                select: { id: true, organization_id: true, budget_utilized: true },
-            });
-
-            if (!project) {
-                return NextResponse.json({ error: 'Project not found' }, { status: 404 });
-            }
-
-            // Create donation record
-            const donation = await prisma.donation.create({
-                data: {
-                    project_id: body.project_id,
-                    donor_id: body.donor_id,
-                    amount: body.amount,
-                },
-            });
-
-            // Update project's budget_utilized
-            await prisma.project.update({
-                where: { id: body.project_id },
-                data: {
-                    budget_utilized: Number(project.budget_utilized) + body.amount,
-                },
+            // Transaction: create donation + update project budget
+            const { donation, organizationId } = await donationRepo.createWithTransaction({
+                project_id: input.project_id,
+                donor_id: input.donor_id,
+                amount: input.amount,
             });
 
             savedToDb = true;
 
-            // Recalculate impact score (funding efficiency component changes)
-            const updatedScore = await recalculateOrgScore(project.organization_id);
+            // Recalculate impact score (efficiency component changes)
+            const updatedScore = await recalculateOrgScore(organizationId);
 
-            return NextResponse.json({
+            // Audit log
+            await auditLogRepo.create({
+                actor_id: input.donor_id,
+                actor_role: 'DONOR',
+                action: 'DONATION_CREATED',
+                entity_type: 'Donation',
+                entity_id: donation.id,
+                new_value: { project_id: input.project_id, amount: input.amount },
+            });
+
+            return NextResponse.json(successResponse({
                 donation: {
                     id: donation.id,
-                    project_id: body.project_id,
-                    donor_id: body.donor_id,
-                    amount: body.amount,
+                    project_id: input.project_id,
+                    donor_id: input.donor_id,
+                    amount: input.amount,
                     created_at: donation.created_at.toISOString(),
                 },
                 impact_score_updated: {
-                    organization_id: project.organization_id,
+                    organization_id: organizationId,
                     final_score: updatedScore.final_score,
                 },
                 persisted: true,
-            }, { status: 201 });
-        } catch {
+            }), { status: 201 });
+        } catch (error) {
+            if (error instanceof Error && error.message === 'PROJECT_NOT_FOUND') {
+                const { AppError } = await import('@/server/middleware/errorHandler');
+                throw AppError.notFound('Project');
+            }
+            if (error && typeof error === 'object' && 'statusCode' in error) throw error;
             // DB not available
         }
 
-        return NextResponse.json({
+        return NextResponse.json(successResponse({
             donation: {
                 id: crypto.randomUUID(),
-                ...body,
+                ...input,
                 created_at: new Date().toISOString(),
             },
             impact_score_updated: null,
             persisted: savedToDb,
-        }, { status: 201 });
+        }), { status: 201 });
     } catch (error) {
-        console.error('Donation creation error:', error);
-        return NextResponse.json({ error: 'Donation creation failed' }, { status: 500 });
+        return handleApiError(error);
     }
 }

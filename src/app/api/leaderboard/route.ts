@@ -1,10 +1,16 @@
-import { NextResponse } from 'next/server';
+import { NextRequest, NextResponse } from 'next/server';
+import { handleApiError } from '@/server/middleware/errorHandler';
+import { impactScoreRepo } from '@/server/repositories';
+import { successResponse, parsePagination, buildPaginationMeta } from '@/server/utils';
 
 // ──────────────────────────────────────────────────────────────
-// GET /api/leaderboard
-// Returns top 20 organizations ranked by final_score descending
-// Includes: organization name, final_score, transparency_score,
-//           efficiency_score
+// GET /api/leaderboard — Paginated leaderboard
+// ──────────────────────────────────────────────────────────────
+// Enterprise-grade:
+// ✓ Pagination support (?page=1&page_size=20)
+// ✓ Repository pattern (no direct Prisma)
+// ✓ Structured responses
+// ✓ Fallback data
 // ──────────────────────────────────────────────────────────────
 
 interface LeaderboardEntry {
@@ -18,8 +24,6 @@ interface LeaderboardEntry {
     calculated_at: string;
 }
 
-// ─── In-memory fallback data ─────────────────────────────────
-
 const FALLBACK_LEADERBOARD: LeaderboardEntry[] = [
     { rank: 1, organization_id: 'org3', organization_name: 'Rural Health Foundation', organization_type: 'NGO', final_score: 872, transparency_score: 95, efficiency_score: 180, calculated_at: new Date().toISOString() },
     { rank: 2, organization_id: 'org2', organization_name: 'EduReach India', organization_type: 'NGO', final_score: 834, transparency_score: 88, efficiency_score: 170, calculated_at: new Date().toISOString() },
@@ -29,83 +33,44 @@ const FALLBACK_LEADERBOARD: LeaderboardEntry[] = [
     { rank: 6, organization_id: 'org6', organization_name: 'NITI Aayog SDG Cell', organization_type: 'GOVERNMENT', final_score: 720, transparency_score: 85, efficiency_score: 140, calculated_at: new Date().toISOString() },
 ];
 
-export async function GET() {
+export async function GET(request: NextRequest) {
     try {
-        // Try DB-backed leaderboard
+        const { searchParams } = new URL(request.url);
+        const { page, pageSize } = parsePagination(searchParams);
+
         try {
-            const prismaModule = await import('@/lib/prisma');
-            const prisma = prismaModule.default;
+            const allRanked = await impactScoreRepo.getLeaderboard(100);
 
-            // Get the latest impact score per organization using a subquery approach:
-            // 1. Get all orgs with their most recent score
-            const orgs = await prisma.organization.findMany({
-                select: {
-                    id: true,
-                    name: true,
-                    type: true,
-                    impact_scores: {
-                        orderBy: { calculated_at: 'desc' },
-                        take: 1,
-                        select: {
-                            final_score: true,
-                            transparency_score: true,
-                            efficiency_score: true,
-                            calculated_at: true,
-                        },
-                    },
-                },
-            });
+            if (allRanked.length > 0) {
+                const total = allRanked.length;
+                const start = (page - 1) * pageSize;
+                const paged = allRanked.slice(start, start + pageSize).map((entry, i) => ({
+                    rank: start + i + 1,
+                    ...entry,
+                    calculated_at: entry.calculated_at instanceof Date
+                        ? entry.calculated_at.toISOString()
+                        : String(entry.calculated_at),
+                }));
 
-            type OrgWithScores = {
-                id: string;
-                name: string;
-                type: string;
-                impact_scores: Array<{
-                    final_score: unknown;
-                    transparency_score: unknown;
-                    efficiency_score: unknown;
-                    calculated_at: Date;
-                }>;
-            };
-
-            // Filter to only orgs with at least one score, flatten, sort, take 20
-            const ranked = (orgs as OrgWithScores[])
-                .filter(org => org.impact_scores.length > 0)
-                .map(org => ({
-                    organization_id: org.id,
-                    organization_name: org.name,
-                    organization_type: org.type,
-                    final_score: Number(org.impact_scores[0].final_score),
-                    transparency_score: Number(org.impact_scores[0].transparency_score),
-                    efficiency_score: Number(org.impact_scores[0].efficiency_score),
-                    calculated_at: org.impact_scores[0].calculated_at.toISOString(),
-                }))
-                .sort((a, b) => b.final_score - a.final_score)
-                .slice(0, 20)
-                .map((entry, i) => ({ rank: i + 1, ...entry }));
-
-            if (ranked.length > 0) {
-                return NextResponse.json({
-                    leaderboard: ranked,
-                    total: ranked.length,
-                    source: 'database',
-                });
+                return NextResponse.json(successResponse(
+                    { leaderboard: paged },
+                    { source: 'database', ...buildPaginationMeta(page, pageSize, total) }
+                ));
             }
         } catch {
-            // DB not available — fall through to fallback
+            // DB not available — fall through
         }
 
-        // Fallback: return static demo data
-        return NextResponse.json({
-            leaderboard: FALLBACK_LEADERBOARD,
-            total: FALLBACK_LEADERBOARD.length,
-            source: 'fallback',
-        });
+        // Paginated fallback
+        const total = FALLBACK_LEADERBOARD.length;
+        const start = (page - 1) * pageSize;
+        const paged = FALLBACK_LEADERBOARD.slice(start, start + pageSize);
+
+        return NextResponse.json(successResponse(
+            { leaderboard: paged },
+            { source: 'fallback', ...buildPaginationMeta(page, pageSize, total) }
+        ));
     } catch (error) {
-        console.error('Leaderboard error:', error);
-        return NextResponse.json(
-            { error: 'Failed to retrieve leaderboard' },
-            { status: 500 }
-        );
+        return handleApiError(error);
     }
 }

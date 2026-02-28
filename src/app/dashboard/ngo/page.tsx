@@ -29,6 +29,20 @@ export default function NGODashboard() {
     const totalSpent = allProjects.reduce((s, p) => s + p.spent, 0);
     const recentActivities = activities.slice(0, 4);
 
+    const [apiScoreData, setApiScoreData] = React.useState<any>(null);
+
+    React.useEffect(() => {
+        if (user?.id) {
+            fetch(`/api/organizations/${user.id}/impact-breakdown`)
+                .then(r => r.json())
+                .then(json => {
+                    const payload = json.data || json;
+                    if (!payload.error) setApiScoreData(payload);
+                })
+                .catch(console.error);
+        }
+    }, [user?.id]);
+
     const handleExportReport = () => {
         generateImpactReport({
             organizationName: user?.organization_name || 'Organization',
@@ -45,7 +59,7 @@ export default function NGODashboard() {
         { label: 'Active Projects', value: allProjects.length, icon: '📁', bgColor: '#eff6ff', iconBg: '#dbeafe', color: '#3b82f6' },
         { label: 'Total Beneficiaries', value: totalBeneficiaries, icon: '👥', bgColor: '#ecfdf5', iconBg: '#d1fae5', color: '#10b981' },
         { label: 'Budget Utilized', value: Math.round((totalSpent / totalBudget) * 100), icon: '💰', bgColor: '#fffbeb', iconBg: '#fef3c7', color: '#f59e0b', suffix: '%' },
-        { label: 'Impact Score', value: impactData?.overall_score || 847, icon: '⚡', bgColor: '#f5f3ff', iconBg: '#ede9fe', color: '#8b5cf6' },
+        { label: 'Impact Score', value: apiScoreData?.final_score || impactData?.overall_score || 847, icon: '⚡', bgColor: '#f5f3ff', iconBg: '#ede9fe', color: '#8b5cf6' },
     ];
 
     return (
@@ -85,20 +99,38 @@ export default function NGODashboard() {
             {/* Impact Score + SDG Breakdown */}
             <div className="grid md:grid-cols-2 gap-5">
                 <motion.div {...fadeIn(0.3)} className="glass-card p-6">
-                    <h2 className="text-lg font-semibold mb-4" style={{ color: '#0f172a' }}>Organization Impact Score</h2>
+                    <h2 className="text-lg font-semibold mb-4 flex items-center gap-2" style={{ color: '#0f172a' }}>
+                        Organization Impact Score
+                        {apiScoreData && (
+                            <span className="text-[10px] px-2 py-0.5 rounded-full bg-slate-100 text-slate-500 font-medium border border-slate-200">
+                                v{apiScoreData.calculation_version}
+                            </span>
+                        )}
+                    </h2>
                     <div className="flex items-center justify-around">
-                        <ImpactGauge score={impactData?.overall_score || 847} />
+                        <ImpactGauge score={apiScoreData?.final_score || impactData?.overall_score || 847} />
                         <div className="space-y-3">
-                            {[
+                            {(apiScoreData ? [
+                                { label: 'Beneficiary Scale', score: Math.round(apiScoreData.scale_score), raw: apiScoreData.raw_scale_value, color: '#3b82f6' },
+                                { label: 'Outcome', score: Math.round(apiScoreData.outcome_score), raw: apiScoreData.raw_outcome_value, color: '#10b981' },
+                                { label: 'Geographic Need', score: Math.round(apiScoreData.geographic_need_score), raw: apiScoreData.raw_geo_value, color: '#8b5cf6' },
+                                { label: 'Funding Efficiency', score: Math.round(apiScoreData.efficiency_score), raw: apiScoreData.raw_efficiency_value, color: '#f59e0b' },
+                                { label: 'Verification', score: Math.round(apiScoreData.transparency_score), raw: apiScoreData.raw_transparency_value, color: '#ef4444' },
+                            ] : [
                                 { label: 'Beneficiary Scale', score: impactData?.beneficiary_scale || 88, color: '#3b82f6' },
                                 { label: 'Outcome', score: impactData?.outcome_score || 85, color: '#10b981' },
                                 { label: 'Geographic Need', score: impactData?.geographic_need || 82, color: '#8b5cf6' },
                                 { label: 'Funding Efficiency', score: impactData?.funding_efficiency || 79, color: '#f59e0b' },
                                 { label: 'Verification', score: impactData?.verification_score || 92, color: '#ef4444' },
-                            ].map((item, i) => (
+                            ]).map((item: any, i: number) => (
                                 <div key={i}>
-                                    <div className="flex justify-between text-xs mb-1">
-                                        <span style={{ color: '#64748b' }}>{item.label}</span>
+                                    <div className="flex justify-between text-xs mb-1 items-end">
+                                        <div className="flex flex-col">
+                                            <span style={{ color: '#64748b' }}>{item.label}</span>
+                                            {item.raw !== undefined && (
+                                                <span className="text-[9px] text-slate-400">Raw: {typeof item.raw === 'number' ? item.raw.toFixed(2) : item.raw}</span>
+                                            )}
+                                        </div>
                                         <span className="font-semibold" style={{ color: item.color }}>{item.score}%</span>
                                     </div>
                                     <div className="h-2 rounded-full overflow-hidden w-40" style={{ background: '#f1f5f9' }}>

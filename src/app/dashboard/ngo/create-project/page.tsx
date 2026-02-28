@@ -43,7 +43,24 @@ export default function CreateProjectPage() {
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ description: form.description }),
             });
-            const results: ClassifyResult = await res.json();
+            const json = await res.json();
+
+            if (!res.ok || json.success === false) {
+                throw new Error(json.error?.message || 'API classification failed');
+            }
+
+            // API returns { success, data: {...} } wrapper
+            const raw = json.data || json;
+
+            // Ensure classifications and sdg_tags always exist
+            const results: ClassifyResult = {
+                sdg_tags: raw.sdg_tags || [],
+                classifications: raw.classifications || (raw.sdg_tags || []).map((t: number) => ({
+                    sdg_id: t, sdg_name: '', confidence: 0.85,
+                })),
+                reasoning: raw.reasoning || 'Classified based on project description.',
+                source: raw.source || 'local',
+            };
             setSdgResults(results);
         } catch {
             // Minimal fallback if API is completely unreachable
@@ -84,7 +101,8 @@ export default function CreateProjectPage() {
                     end_date: form.endDate,
                 }),
             });
-            const data = await res.json();
+            const json = await res.json();
+            const data = json.data || json;
 
             // Also update in-memory DataContext so dashboards update immediately
             const impactScore = calculateProjectScore(
@@ -244,7 +262,7 @@ export default function CreateProjectPage() {
                         <div className="mt-6 flex justify-center gap-2">
                             {[0, 1, 2].map(i => (
                                 <div key={i} className="w-3 h-3 rounded-full animate-pulse"
-                                    style={{ background: '#3b82f6', animationDelay: `${i * 0.3}s` }} />
+                                    style={{ background: '#22c55e', animationDelay: `${i * 0.3}s` }} />
                             ))}
                         </div>
                     </motion.div>
@@ -275,7 +293,7 @@ export default function CreateProjectPage() {
 
                             {/* SDG Cards with Confidence Scores */}
                             <div className="flex flex-wrap gap-3 mb-4">
-                                {(sdgResults.classifications || sdgResults.sdg_tags.map(t => ({ sdg_id: t, sdg_name: '', confidence: 0.85 }))).map((cls, i) => {
+                                {(sdgResults.classifications || sdgResults.sdg_tags?.map(t => ({ sdg_id: t, sdg_name: '', confidence: 0.85 })) || []).map((cls, i) => {
                                     const info = SDG_INFO.find(s => s.id === cls.sdg_id);
                                     const pct = Math.round(cls.confidence * 100);
                                     return (

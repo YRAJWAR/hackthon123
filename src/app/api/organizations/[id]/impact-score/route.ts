@@ -1,13 +1,16 @@
 import { NextRequest, NextResponse } from 'next/server';
 import { getOrgScore, getOrgScoreHistory, recalculateOrgScore } from '@/services/impactScoringService';
+import { handleApiError, AppError } from '@/server/middleware/errorHandler';
+import { successResponse } from '@/server/utils';
+import { auditLogRepo } from '@/server/repositories';
 
 // ──────────────────────────────────────────────────────────────
 // GET /api/organizations/:id/impact-score
-// Returns the latest impact score + score history for an org
-//
-// Query params:
-//   ?recalculate=true   — Force recalculation from DB
-//   ?history=true        — Include score history for trend charts
+// ──────────────────────────────────────────────────────────────
+// Enterprise-grade:
+// ✓ Structured responses
+// ✓ Centralized error handling
+// ✓ Audit logging for recalculations
 // ──────────────────────────────────────────────────────────────
 
 export async function GET(
@@ -18,7 +21,7 @@ export async function GET(
         const { id: orgId } = await params;
 
         if (!orgId) {
-            return NextResponse.json({ error: 'Organization ID is required' }, { status: 400 });
+            throw AppError.badRequest('Organization ID is required');
         }
 
         const { searchParams } = new URL(request.url);
@@ -30,7 +33,18 @@ export async function GET(
             ? await recalculateOrgScore(orgId)
             : await getOrgScore(orgId, false);
 
-        // Build response
+        // Audit log if recalculated
+        if (forceRecalc) {
+            await auditLogRepo.create({
+                actor_id: 'API_CALLER',
+                actor_role: 'SYSTEM',
+                action: 'SCORE_RECALCULATED',
+                entity_type: 'ImpactScore',
+                entity_id: orgId,
+                new_value: { final_score: score.final_score },
+            });
+        }
+
         const response: Record<string, unknown> = {
             organization_id: score.organization_id,
             score: {
@@ -51,18 +65,13 @@ export async function GET(
             },
         };
 
-        // Optionally include score history
         if (includeHistory) {
             const history = await getOrgScoreHistory(orgId);
             response.history = history.scores;
         }
 
-        return NextResponse.json(response);
+        return NextResponse.json(successResponse(response));
     } catch (error) {
-        console.error('Impact score error:', error);
-        return NextResponse.json(
-            { error: 'Failed to retrieve impact score' },
-            { status: 500 }
-        );
+        return handleApiError(error);
     }
 }

@@ -2,6 +2,7 @@
 
 import React from 'react';
 import Link from 'next/link';
+import Image from 'next/image';
 import { motion } from 'framer-motion';
 import { SDG_INFO } from '@/data/mockData';
 
@@ -29,13 +30,17 @@ export default function LandingPage() {
                 style={{ background: 'rgba(10,15,30,0.85)', backdropFilter: 'blur(16px)', borderBottom: '1px solid rgba(255,255,255,0.05)' }}>
                 <div className="max-w-7xl mx-auto flex items-center justify-between">
                     <div className="flex items-center gap-3">
-                        <div className="w-9 h-9 rounded-xl flex items-center justify-center"
-                            style={{ background: 'linear-gradient(135deg, #06b6d4, #8b5cf6)' }}>🌍</div>
+                        <Image src="/logo.png" alt="SDG Nexus" width={36} height={36}
+                            className="rounded-xl" style={{ objectFit: 'contain' }} />
                         <span className="text-xl font-bold gradient-text">SDG Nexus</span>
                     </div>
                     <div className="flex items-center gap-4">
+                        <Link href="/explore"
+                            className="text-sm font-medium text-cyan-400 hover:text-cyan-300 transition no-underline">
+                            Explore
+                        </Link>
                         <Link href="/login"
-                            className="px-5 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white transition"
+                            className="px-5 py-2 rounded-lg text-sm font-medium text-gray-300 hover:text-white transition no-underline"
                             style={{ border: '1px solid rgba(255,255,255,0.1)' }}>
                             Sign In
                         </Link>

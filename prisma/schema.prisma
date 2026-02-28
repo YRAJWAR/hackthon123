@@ -41,6 +41,13 @@ enum ProjectStatus {
   SUSPENDED
 }
 
+enum RiskLevel {
+  LOW
+  MEDIUM
+  HIGH
+  CRITICAL
+}
+
 // ─── 1. Users ────────────────────────────────────────────────
 
 model User {
@@ -75,6 +82,7 @@ model Organization {
   projects       Project[]
   impact_scores  ImpactScore[]
   csr_allocations CSRAllocation[] @relation("CorporateCSR")
+  risk_flags     RiskFlag[]
 
   @@index([type])
   @@index([state])
@@ -119,7 +127,8 @@ model SDG {
   name  String @db.VarChar(100)
 
   // Relations
-  project_sdgs ProjectSDG[]
+  project_sdgs       ProjectSDG[]
+  geo_impact_summaries GeoImpactSummary[]
 
   @@map("sdgs")
 }
@@ -166,15 +175,21 @@ model ProjectActivity {
 // ─── 7. ImpactScores ─────────────────────────────────────────
 
 model ImpactScore {
-  id                    String   @id @default(uuid()) @db.Uuid
-  organization_id       String   @db.Uuid
-  scale_score           Decimal  @db.Decimal(5, 2) // 0–100
-  outcome_score         Decimal  @db.Decimal(5, 2)
-  efficiency_score      Decimal  @db.Decimal(5, 2)
-  geographic_need_score Decimal  @db.Decimal(5, 2)
-  transparency_score    Decimal  @db.Decimal(5, 2)
-  final_score           Decimal  @db.Decimal(7, 2) // weighted composite
-  calculated_at         DateTime @default(now()) @db.Timestamptz
+  id                     String   @id @default(uuid()) @db.Uuid
+  organization_id        String   @db.Uuid
+  scale_score            Decimal  @db.Decimal(5, 2) // 0–100
+  outcome_score          Decimal  @db.Decimal(5, 2)
+  efficiency_score       Decimal  @db.Decimal(5, 2)
+  geographic_need_score  Decimal  @db.Decimal(5, 2)
+  transparency_score     Decimal  @db.Decimal(5, 2)
+  final_score            Decimal  @db.Decimal(7, 2) // weighted composite
+  calculation_version    String   @default("1.0") @db.VarChar(10)
+  raw_scale_value        Decimal? @db.Decimal(10, 2)
+  raw_outcome_value      Decimal? @db.Decimal(10, 2)
+  raw_efficiency_value   Decimal? @db.Decimal(10, 2)
+  raw_geo_value          Decimal? @db.Decimal(10, 2)
+  raw_transparency_value Decimal? @db.Decimal(10, 2)
+  calculated_at          DateTime @default(now()) @db.Timestamptz
 
   // Relations
   organization Organization @relation(fields: [organization_id], references: [id], onDelete: Cascade)
@@ -223,4 +238,67 @@ model CSRAllocation {
   @@index([project_id])
   @@index([financial_year])
   @@map("csr_allocations")
+}
+
+// ─── 10. GeoImpactSummary ────────────────────────────────────
+
+model GeoImpactSummary {
+  id                  String   @id @default(uuid()) @db.Uuid
+  district            String   @db.VarChar(100)
+  state               String   @db.VarChar(100)
+  sdg_id              Int
+  total_funding       Decimal  @default(0) @db.Decimal(15, 2)
+  total_beneficiaries Int      @default(0)
+  avg_impact_score    Decimal  @default(0) @db.Decimal(7, 2)
+  last_updated        DateTime @default(now()) @db.Timestamptz
+
+  // Relations
+  sdg SDG @relation(fields: [sdg_id], references: [id], onDelete: Cascade)
+
+  @@unique([district, state, sdg_id])
+  @@index([state])
+  @@index([sdg_id])
+  @@index([total_funding])
+  @@map("geo_impact_summaries")
+}
+
+// ─── 11. RiskFlags ───────────────────────────────────────────
+
+model RiskFlag {
+  id              String    @id @default(uuid()) @db.Uuid
+  organization_id String    @db.Uuid
+  risk_type       String    @db.VarChar(100) // e.g. high_funding_low_beneficiaries, efficiency_decline, missing_proofs
+  risk_level      RiskLevel @default(MEDIUM)
+  description     String    @db.Text
+  resolved        Boolean   @default(false)
+  created_at      DateTime  @default(now()) @db.Timestamptz
+
+  // Relations
+  organization Organization @relation(fields: [organization_id], references: [id], onDelete: Cascade)
+
+  @@index([organization_id])
+  @@index([risk_level])
+  @@index([created_at(sort: Desc)])
+  @@map("risk_flags")
+}
+
+// ─── 12. AuditLogs ───────────────────────────────────────────
+
+model AuditLog {
+  id              String   @id @default(uuid()) @db.Uuid
+  actor_id        String   @db.VarChar(100)  // user or system ID
+  actor_role      String   @db.VarChar(50)   // NGO, CORPORATE, ADMIN, SYSTEM
+  action          String   @db.VarChar(100)  // e.g. SCORE_RECALCULATED, PROJECT_CREATED
+  entity_type     String   @db.VarChar(50)   // e.g. Organization, Project, ImpactScore
+  entity_id       String   @db.VarChar(100)
+  previous_value  String?  @db.Text          // JSON stringified
+  new_value       String?  @db.Text          // JSON stringified
+  ip_address      String?  @db.VarChar(45)
+  created_at      DateTime @default(now()) @db.Timestamptz
+
+  @@index([entity_type, entity_id])
+  @@index([actor_id])
+  @@index([action])
+  @@index([created_at(sort: Desc)])
+  @@map("audit_logs")
 }

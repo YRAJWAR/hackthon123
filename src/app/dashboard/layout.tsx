@@ -3,6 +3,7 @@
 import React, { useEffect } from 'react';
 import { useRouter } from 'next/navigation';
 import Sidebar from '@/components/ui/Sidebar';
+import Image from 'next/image';
 import { useAuth } from '@/lib/AuthContext';
 
 export default function DashboardLayout({ children }: { children: React.ReactNode }) {
@@ -19,8 +20,8 @@ export default function DashboardLayout({ children }: { children: React.ReactNod
         return (
             <div className="min-h-screen flex items-center justify-center" style={{ background: '#f1f5f9' }}>
                 <div className="text-center">
-                    <div className="w-12 h-12 rounded-xl mx-auto mb-4 flex items-center justify-center text-2xl animate-pulse"
-                        style={{ background: '#3b82f6' }}>🌍</div>
+                    <Image src="/logo.png" alt="SDG Nexus" width={48} height={48}
+                        className="rounded-xl mx-auto mb-4 animate-pulse" style={{ objectFit: 'contain' }} />
                     <p className="text-sm" style={{ color: '#94a3b8' }}>Loading SDG Nexus...</p>
                 </div>
             </div>
